@@ -7,7 +7,7 @@ require("../function/common.php");
 <?php
 include_once("../res/template/comhead.php");
 ?>
-<title>首頁-Helpicky</title>
+<title>首頁-<?php echo $cfg['website']['name']; ?></title>
 </head>
 <body topmargin="0" leftmargin="0" bottommargin="0">
 <?php

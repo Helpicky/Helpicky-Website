@@ -24,9 +24,26 @@
 					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					
+					<?php
+					if ($login === false) {
+					?>
+					<li>
+						<a href="../login/">登入</a>
+					</li>
+					<?php
+					} else {
+					?>
+					<li>
+						<a href="../logout/"><?php echo $login["nickname"]; ?> 登出</a></li>
+					</li>
+					<?php
+					}
+					?>
 				</ul>
 			</nav>
 		</div>
 	</header>
+<?php
+	showmsgbox();
+?>
 	<div class="container-fluid">
