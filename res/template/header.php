@@ -34,7 +34,10 @@
 					} else {
 					?>
 					<li>
-						<a href="../logout/"><?php echo $login["nickname"]; ?> 登出</a></li>
+						<a href="../setting/">設定</a>
+					</li>
+					<li>
+						<a href="../logout/"><?php echo $login["nickname"]; ?> 登出</a>
 					</li>
 					<?php
 					}
