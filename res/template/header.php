@@ -31,6 +31,9 @@
 					<li>
 						<a href="../search/">搜尋</a>
 					</li>
+					<li>
+						<a href="../recommend/">推薦</a>
+					</li>
 					<?php
 					}
 					?>
