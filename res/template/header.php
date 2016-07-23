@@ -22,6 +22,15 @@
 					<li>
 						<a href="../home/">首頁</a>
 					</li>
+					<?php
+					if ($login !== false) {
+					?>
+					<li>
+						<a href="../diary/">日記</a>
+					</li>
+					<?php
+					}
+					?>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<?php
