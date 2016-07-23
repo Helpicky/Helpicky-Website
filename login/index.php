@@ -15,7 +15,7 @@ if ($login !== false) {
 	try {
 		$accessToken = $helper->getAccessToken();
 		if (! isset($accessToken)) {
-			addmsgbox("error", "Facebook登入失敗");
+			addmsgbox("danger", "Facebook登入失敗");
 		} else {
 			$response = $fb->get('/me',$accessToken->getValue())->getDecodedBody();
 			$query = new query;
@@ -26,7 +26,7 @@ if ($login !== false) {
 			$login = fetchone(SELECT($query));
 			if($login !== null){
 				addmsgbox("success", "登入成功");
-				?><script>setTimeout(function(){location="../home/";}, 5000)</script><?php
+				?><script>setTimeout(function(){location="../home/";}, 1000)</script><?php
 			} else {
 				$query = new query;
 				$query->table = "user";
@@ -42,7 +42,7 @@ if ($login !== false) {
 				);
 				$login = fetchone(SELECT($query));
 				addmsgbox("success", "自動新建帳戶");
-				?><script>setTimeout(function(){location="../home/";}, 5000)</script><?php
+				?><script>setTimeout(function(){location="../home/";}, 1000)</script><?php
 			}
 			$cookie = getrandommd5();
 			$query = new query;
