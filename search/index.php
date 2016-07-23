@@ -2,6 +2,7 @@
 <?php
 require("../function/common.php");
 if($login === false)header("Location: ../login/");
+$search = $_GET["name"] ?? "";
 ?>
 <html lang="zh-Hant-TW">
 <head>
@@ -25,7 +26,7 @@ require("../res/template/header.php");
 					<input type="hidden" name="meal" value="<?php echo @$_GET["meal"]; ?>">
 					<div class="input-group">
 						<span class="input-group-addon">搜尋</span>
-						<input class="form-control" name="name" type="text" value="<?php echo @$_GET["name"]; ?>">
+						<input class="form-control" name="name" type="text" value="<?php echo @$search; ?>" maxlength="20" autofocus>
 						<span class="input-group-btn">
 					    	<button type="submit" class="btn btn-info">
 								<span class="glyphicon glyphicon-search"></span>
@@ -33,6 +34,26 @@ require("../res/template/header.php");
 					    </span>
 					</div>
 				</form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				熱門關鍵字：
+				<?php
+				$query = new query;
+				$query->table = "keyword";
+				$query->where = array(
+					array("count", $cfg['search']['show']['threshold'], ">=")
+				);
+				$query->order = array("count", "DESC");
+				$query->limit = $cfg['search']['show']['number'];
+				$row = SELECT($query);
+				foreach ($row as $index => $temp) {
+					echo ($index?"、":"");
+					?><a href="?name=<?php echo $temp["keyword"]; ?>"><?php echo $temp["keyword"]; ?></a>
+					<?php echo "(".$temp["count"].")";
+				}
+				?>
 			</div>
 		</div>
 		<div class="row">
@@ -44,48 +65,76 @@ require("../res/template/header.php");
 				<input type="hidden" name="meal" value="<?php echo @$_GET["meal"]; ?>">
 				<ul class="list-group" id="contact-list">
 				<?php
-				$query = new query;
-				$query->table = "food";
-				$query->where = array("name", str_replace("+", "[+]", @$_GET["name"]), "REGEXP");
-				$row = SELECT($query);
-				if(count($row) > 0){
-					foreach($row as $temp){
-					?>
-						<li class="list-group-item" style="height: 120px">
-					        <a style="display: block" href="../info/?fid=<?php echo $temp["fid"]; ?>&date=<?php echo $_GET["date"]; ?>&meal=<?php echo $_GET["meal"]; ?>">
-					        <div class="col-xs-4 col-md-2">
-					            <?php
-					            if ($temp["hasphoto"] != 0) {
-					            ?><img src="../res/image/food/<?php echo $temp["familyid"]; ?>.jpg" style="max-height: 100px; max-width: 100%;"><?php
-					            } else {
-					            ?><img src="../res/image/search/No_photo_available.png" style="max-height: 100px; max-width: 100%;"><?php
-					            }
-					            ?>
-					        </div>
-					        <div class="col-xs-6 col-md-8">
-					            <span><?php echo $temp["name"]; ?></span><br>
-					            <span><?php echo $temp["calories"]; ?>大卡</span>
-					        </div>
-					        </a>
-					        <div class="col-xs-2 col-md-2">
-					        	<?php
-					        	if (@$_GET["date"] != "" && @$_GET != "") {
-					        	?>
-					        	<button type="submit" class="btn btn-info" style="color: #000; background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0);" name="fid" value="<?php echo $temp["fid"]; ?>">
-									<span class="glyphicon glyphicon-plus"></span>
-								</button>
-					        	<?php
-					        	} else {
-					        	?>
-					        	<button type="button" class="btn btn-info" data-toggle="modal" data-target="#Modal" style="color: #000; background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0);" onclick="add('<?php echo $temp["fid"]; ?>')">
-									<span class="glyphicon glyphicon-plus"></span>
-								</button>
-					        	<?php
-					        	}
-					        	?>
-					        </div>
-					    </li>
-					<?php
+				if ($search != "") {
+					$lasttime = @file_get_contents("../log/search/CTR/".$login["uid"]."-".$search.".log");
+					if ($lasttime == "" || time() - $lasttime > $cfg['search']['CTR']['cooldown']) {
+						$query = new query;
+						$query->table = "keyword";
+						$query->where = array("keyword", $search);
+						$row = fetchone(SELECT($query));
+						if ($row == null) {
+							$query = new query;
+							$query->table = "keyword";
+							$query->value = array("keyword", $search);
+							INSERT($query);
+						} else {
+							$query = new query;
+							$query->table = "keyword";
+							$query->value = array("count", ($row["count"]+1));
+							$query->where = array("keyword", $search);
+							UPDATE($query);
+						}
+						$t=file_put_contents("../log/search/CTR/".$login["uid"]."-".$search.".log", time());
+					}
+					$query = new query;
+					$query->table = "food";
+					$query->where = array(
+						array("name", str_replace("+", "[+]", @$search), "REGEXP"),
+						array("hide", "0")
+					);
+					$query->order = array("CTR", "DESC");
+					$row = SELECT($query);
+					if (count($row) > 0) {
+						foreach($row as $temp){
+						?>
+							<li class="list-group-item" style="height: 120px">
+						        <a style="display: block" href="../info/?fid=<?php echo $temp["fid"]; ?>&date=<?php echo @$_GET["date"]; ?>&meal=<?php echo @$_GET["meal"]; ?>">
+						        <div class="col-xs-4 col-md-2">
+						            <?php
+						            if ($temp["hasphoto"] != 0) {
+						            ?><img src="../res/image/food/<?php echo $temp["familyid"]; ?>.jpg" style="max-height: 100px; max-width: 100%;"><?php
+						            } else {
+						            ?><img src="../res/image/search/No_photo_available.png" style="max-height: 100px; max-width: 100%;"><?php
+						            }
+						            ?>
+						        </div>
+						        <div class="col-xs-6 col-md-8">
+						            <span><?php echo $temp["name"]; ?></span><br>
+						            <span><?php echo $temp["calories"]; ?>大卡</span><br>
+						            <span>平均<?php echo $temp["rating"]; ?>分</span><br>
+						            <span>點擊<?php echo $temp["CTR"]; ?>次</span>
+						        </div>
+						        </a>
+						        <div class="col-xs-2 col-md-2">
+						        	<?php
+						        	if (@$_GET["date"] != "" && @$_GET != "") {
+						        	?>
+						        	<button type="submit" class="btn btn-info" style="color: #000; background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0);" name="fid" value="<?php echo $temp["fid"]; ?>">
+										<span class="glyphicon glyphicon-plus"></span>
+									</button>
+						        	<?php
+						        	} else {
+						        	?>
+						        	<button type="button" class="btn btn-info" data-toggle="modal" data-target="#Modal" style="color: #000; background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0);" onclick="add('<?php echo $temp["fid"]; ?>')">
+										<span class="glyphicon glyphicon-plus"></span>
+									</button>
+						        	<?php
+						        	}
+						        	?>
+						        </div>
+						    </li>
+						<?php
+						}
 					}
 				}
 				?>
@@ -114,10 +163,10 @@ require("../res/template/header.php");
 							<span class="input-group-addon">日期</span>
 							<input class="form-control" name="date" type="date" value="<?php echo date("Y-m-d"); ?>" required>
 						</div>
-      					<input type="image" src="../res/image/1.png" width="50px" border="0" name="meal" value="1">
-      					<input type="image" src="../res/image/2.jpg" width="50px" border="0" name="meal" value="2">
-      					<input type="image" src="../res/image/3.jpg" width="50px" border="0" name="meal" value="3">
-      					<input type="image" src="../res/image/4.jpg" width="50px" border="0" name="meal" value="4">
+      					<input type="image" src="../res/image/diary/meal1.jpg" width="50px" border="0" name="meal" value="1">
+      					<input type="image" src="../res/image/diary/meal2.jpg" width="50px" border="0" name="meal" value="2">
+      					<input type="image" src="../res/image/diary/meal3.jpg" width="50px" border="0" name="meal" value="3">
+      					<input type="image" src="../res/image/diary/meal4.jpg" width="50px" border="0" name="meal" value="4">
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
