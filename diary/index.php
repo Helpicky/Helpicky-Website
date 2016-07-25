@@ -7,7 +7,6 @@ $show = $_GET["show"] ?? "0";
 ?>
 <html lang="zh-Hant-TW">
 <head>
-<meta charset="UTF-8">
 <?php
 require("../res/template/comhead.php");
 showmeta();

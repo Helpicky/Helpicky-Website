@@ -5,7 +5,6 @@ if($login === false)header("Location: ../login/");
 ?>
 <html lang="zh-Hant-TW">
 <head>
-<meta charset="UTF-8">
 <?php
 require("../res/template/comhead.php");
 showmeta();

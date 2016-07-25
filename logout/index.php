@@ -14,7 +14,6 @@ $login = false;
 ?>
 <html lang="zh-Hant-TW">
 <head>
-<meta charset="UTF-8">
 <?php
 require("../res/template/comhead.php");
 showmeta();

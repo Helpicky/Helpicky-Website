@@ -56,7 +56,6 @@ $food = fetchone(SELECT($query));
 ?>
 <html lang="zh-Hant-TW">
 <head>
-<meta charset="UTF-8">
 <?php
 require("../res/template/comhead.php");
 setmeta("og:description", $food["name"]);
