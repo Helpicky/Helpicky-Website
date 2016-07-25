@@ -71,6 +71,7 @@ else if (isset($_POST["submit"])) {
 <meta charset="UTF-8">
 <?php
 require("../res/template/comhead.php");
+showmeta();
 ?>
 <title>設定-<?php echo $cfg['website']['name']; ?></title>
 </head>

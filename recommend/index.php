@@ -8,6 +8,7 @@ if($login === false)header("Location: ../login/");
 <meta charset="UTF-8">
 <?php
 require("../res/template/comhead.php");
+showmeta();
 ?>
 <title>推薦-<?php echo $cfg['website']['name']; ?></title>
 </head>

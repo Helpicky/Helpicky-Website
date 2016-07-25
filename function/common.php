@@ -4,6 +4,7 @@ require_once("../config/config.php");
 require_once("../function/SQL-function/sql.php");
 require_once("../function/checkpermission.php");
 require_once("../function/msgbox.php");
+require_once("../function/meta.php");
 require_once("../function/getdata.php");
 $login = checklogin();
 function url(){

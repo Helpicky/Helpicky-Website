@@ -17,6 +17,7 @@ $login = false;
 <meta charset="UTF-8">
 <?php
 require("../res/template/comhead.php");
+showmeta();
 ?>
 <title>登出-<?php echo $cfg['website']['name']; ?></title>
 </head>

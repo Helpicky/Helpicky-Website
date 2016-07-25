@@ -6,6 +6,7 @@ require("../function/common.php");
 <head>
 <?php
 include_once("../res/template/comhead.php");
+showmeta();
 ?>
 <title>首頁-<?php echo $cfg['website']['name']; ?></title>
 </head>

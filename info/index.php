@@ -59,6 +59,8 @@ $food = fetchone(SELECT($query));
 <meta charset="UTF-8">
 <?php
 require("../res/template/comhead.php");
+setmeta("og:description", $food["name"]);
+showmeta();
 ?>
 <title>產品資訊-<?php echo $cfg['website']['name']; ?></title>
 <script src="../res/js/bootstrap-rating-input.js"></script>

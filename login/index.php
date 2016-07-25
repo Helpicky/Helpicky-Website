@@ -66,6 +66,7 @@ if ($login !== false) {
 <meta charset="UTF-8">
 <?php
 require("../res/template/comhead.php");
+showmeta();
 ?>
 <title>登入-<?php echo $cfg['website']['name']; ?></title>
 <script type="text/javascript">

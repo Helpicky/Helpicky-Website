@@ -9,6 +9,7 @@ $search = $_GET["name"] ?? "";
 <meta charset="UTF-8">
 <?php
 require("../res/template/comhead.php");
+showmeta();
 ?>
 <title>搜尋-<?php echo $cfg['website']['name']; ?></title>
 </head>

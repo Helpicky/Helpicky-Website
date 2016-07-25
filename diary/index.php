@@ -10,6 +10,7 @@ $show = $_GET["show"] ?? "0";
 <meta charset="UTF-8">
 <?php
 require("../res/template/comhead.php");
+showmeta();
 ?>
 <title>日記-<?php echo $cfg['website']['name']; ?></title>
 <style type="text/css">
