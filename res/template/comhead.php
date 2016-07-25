@@ -4,10 +4,8 @@
 <link href="../res/css/css.css" rel="stylesheet">
 <script src="../res/js/jquery.min.js"></script>
 <script src="../res/js/bootstrap.min.js"></script>
-<link rel="SHORTCUT ICON" href="../res/image/icon.png">
-<meta property="fb:app_id" content="<?php echo $cfg['facebook']['app_id']; ?>"/>
-<meta property="og:title" content="Helpicky"/>
-<meta property="og:type" content="website"/>
-<meta property="og:description" content="Help you pick it!"/>
-<meta property="og:url" content="http://<?php echo url()?>"/>
-<meta property="og:image" content="http://helpicky.twbbs.org/res/image/icon.png">
+<link rel="SHORTCUT ICON" href="../res/image/icon/icon-32.ico">
+<link rel="apple-touch-icon" href="res/image/icon/icon-60.png">
+<link rel="apple-touch-icon" sizes="76x76" href="res/image/icon/icon-76.png">
+<link rel="apple-touch-icon" sizes="120x120" href="res/image/icon/icon-120.png">
+<link rel="apple-touch-icon" sizes="152x152" href="res/image/icon/icon-152.png">

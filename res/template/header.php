@@ -10,7 +10,7 @@
 				</button>
 				<a href="../home/" class="navbar-brand">
 					<div style="float: left;">
-						<img src="../res/image/icon.png" alt="Helpicky" height="30px">
+						<img src="../res/image/icon/icon-30.png" alt="Helpicky" height="30px">
 					</div>
 					<div style="float: left;">
 						&nbsp;&nbsp;<span style="font-weight: bold; font-size: px; font-family: '標楷體';">Helpicky</span><br>
