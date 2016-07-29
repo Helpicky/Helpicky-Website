@@ -112,6 +112,7 @@ require("../res/template/header.php");
 						$sum["calories"] += $row2["calories"];
 						?>
 						<a href="../info/?fid=<?php echo $row2["fid"]; ?>"><?php echo $row2["name"]; ?></a>
+						<a href="../function/diary.php?action=del&hash=<?php echo $temp["hash"];?>&date=<?php echo $date; ?>&show=<?php echo $temp["meal"]; ?>"><span class="glyphicon glyphicon-remove"></span></a><br>
 						<?php
 					}
 				} else {
