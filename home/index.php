@@ -8,7 +8,7 @@ require("../function/common.php");
 include_once("../res/template/comhead.php");
 showmeta();
 ?>
-<title>首頁-<?php echo $cfg['website']['name']; ?></title>
+<title><?php echo $cfg['website']['name']; ?></title>
 </head>
 <body topmargin="0" leftmargin="0" bottommargin="0">
 <?php
