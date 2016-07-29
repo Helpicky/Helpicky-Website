@@ -80,7 +80,7 @@ require("../res/template/header.php");
 	<div class="col-xs-12 col-md-offset-1 col-md-10">
 		<h2>
 			<?php echo $food["name"]; ?>
-			<a href="../diary/add.php?date=<?php echo $_GET["date"]??""; ?>&meal=<?php echo $_GET["meal"]??""; ?>&fid=<?php echo $fid; ?>" class="btn" role="button" style="color: #000; background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0);">
+			<a href="../diary/add.php?date=<?php echo $_GET["date"]??""; ?>&meal=<?php echo $_GET["meal"]??""; ?>&fid=<?php echo $fid; ?>" class="btn btn btn-success btn-circle" role="button">
 				<span class="glyphicon glyphicon-plus"></span>
 			</a>
 		</h2>

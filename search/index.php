@@ -118,7 +118,7 @@ require("../res/template/header.php");
 								</div>
 								</a>
 								<div class="col-xs-2 col-md-2">
-									<a href="../diary/add.php?date=<?php echo $date; ?>&meal=<?php echo $meal; ?>&fid=<?php echo $temp["fid"]; ?>" class="btn" role="button" style="color: #000; background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0);">
+									<a href="../diary/add.php?date=<?php echo $date; ?>&meal=<?php echo $meal; ?>&fid=<?php echo $temp["fid"]; ?>" class="btn btn-success btn-circle" role="button">
 										<span class="glyphicon glyphicon-plus"></span>
 									</a>
 									<?php
