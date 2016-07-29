@@ -11,32 +11,7 @@ require("../res/template/comhead.php");
 showmeta();
 ?>
 <title>日記-<?php echo $cfg['website']['name']; ?></title>
-<style type="text/css">
-#meal1tool {
-	background-color: #e7543f;
-}
-#meal1food {
-	background-color: #ffa88e;
-}
-#meal2tool {
-	background-color: #ffaf3c;
-}
-#meal2food {
-	background-color: #ffd297;
-}
-#meal3tool {
-	background-color: #8bff1a;
-}
-#meal3food {
-	background-color: #cbff98;
-}
-#meal4tool {
-	background-color: #5eddfe;
-}
-#meal4food {
-	background-color: #bbf1ff;
-}
-</style>
+<link href="../res/css/diary.css" rel="stylesheet">
 </head>
 <body Marginwidth="-1" Marginheight="-1" Topmargin="0" Leftmargin="0">
 <?php
