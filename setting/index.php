@@ -55,7 +55,7 @@ else if (isset($_POST["submit"])) {
 			$query = new query;
 			$query->table = "user";
 			$query->value = array(
-				array("BEE", $value),
+				array("BEE", $_POST["BEE"]),
 				array("activity_factor", $_POST["activity_factor"]),
 				array("stress_factor", $_POST["stress_factor"]),
 				array("EE", $value)
