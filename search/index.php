@@ -50,7 +50,7 @@ require("../res/template/header.php");
 				$row = SELECT($query);
 				foreach ($row as $index => $temp) {
 					echo ($index?"、":"");
-					?><a href="?name=<?php echo $temp["keyword"]; ?>"><?php echo $temp["keyword"]; ?></a>
+					?><a href="?name=<?php echo $temp["keyword"]; ?>&date=<?php echo @$_GET["date"]; ?>&meal=<?php echo @$_GET["meal"]; ?>"><?php echo $temp["keyword"]; ?></a>
 					<?php echo "(".$temp["count"].")";
 				}
 				?>
