@@ -78,9 +78,6 @@ require("../res/template/header.php");
 ?>
 <div class="row">
 	<div class="col-xs-12 col-md-offset-1 col-md-10">
-		<a href="../info/?fid=<?php echo rand(1,3003); ?>" class="btn btn-success" role="button">
-			隨機產品
-		</a>
 		<h2><?php echo $food["name"]; ?></h2>
 		<button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">
 			檢視產品資訊
