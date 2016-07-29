@@ -37,6 +37,10 @@ else if (isset($_POST["submit"])) {
 			$query = new query;
 			$query->table = "user";
 			$query->value = array(
+				array("gender", $_POST["gender"]),
+				array("height", $_POST["height"]),
+				array("weight", $_POST["weight"]),
+				array("age", $_POST["age"]),
 				array("BEE", $value)
 			);
 			$query->where = array(
@@ -51,6 +55,9 @@ else if (isset($_POST["submit"])) {
 			$query = new query;
 			$query->table = "user";
 			$query->value = array(
+				array("BEE", $value),
+				array("activity_factor", $_POST["activity_factor"]),
+				array("stress_factor", $_POST["stress_factor"]),
 				array("EE", $value)
 			);
 			$query->where = array(
@@ -87,16 +94,6 @@ require("../res/template/header.php");
 			<th>參數</th>
 			<th>數值</th>
 			<th>自動設定</th>
-		</tr>
-		<tr>
-			<td>Email</td>
-			<td><input type="email" name="email" value="<?php echo $login['email']; ?>"></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>密碼</td>
-			<td><input type="password" name="password" placeholder="不修改留空"></td>
-			<td></td>
 		</tr>
 		<tr>
 			<td>暱稱</td>
