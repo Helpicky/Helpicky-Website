@@ -78,7 +78,12 @@ require("../res/template/header.php");
 ?>
 <div class="row">
 	<div class="col-xs-12 col-md-offset-1 col-md-10">
-		<h2><?php echo $food["name"]; ?></h2>
+		<h2>
+			<?php echo $food["name"]; ?>
+			<a href="../diary/add.php?date=<?php echo $_GET["date"]??""; ?>&meal=<?php echo $_GET["meal"]??""; ?>&fid=<?php echo $fid; ?>" class="btn" role="button" style="color: #000; background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0);">
+				<span class="glyphicon glyphicon-plus"></span>
+			</a>
+		</h2>
 		<button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">
 			檢視產品資訊
 		</button>
