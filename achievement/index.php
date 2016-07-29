@@ -39,16 +39,16 @@ google.charts.setOnLoadCallback(drawLineColors);
 function drawLineColors() {
   var data = new google.visualization.DataTable();
   data.addColumn('string', '日期');
-  data.addColumn('number', '熱量');
+  data.addColumn('number', '食用熱量');
+  data.addColumn('number', '所需熱量');
 
   data.addRows([
   	<?php
   	foreach ($diary as $key => $value) {
-  		echo "['".date("m/d", strtotime($key))."', ".$value."],";
+  		echo "['".date("d", strtotime($key))."', ".$value.", ".$login["EE"]."],";
   	}
   	?>
   ]);
-
   var options = {
     hAxis: {
       title: '日期'
@@ -56,11 +56,25 @@ function drawLineColors() {
     vAxis: {
       title: '熱量'
     },
-    colors: ['#a52714']
+    colors: ['#0011FF', '#FF0011']
   };
-
   var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
   chart.draw(data, options);
+
+  var data2 = new google.visualization.DataTable();
+  data2.addColumn('string', '日期');
+  data2.addColumn('number', '食用熱量');
+  data2.addColumn('number', '所需熱量');
+
+  data2.addRows([
+    <?php
+    foreach ($diary as $key => $value) {
+      if($key >= date("Y-m-d", time()-86400*6))echo "['".date("d", strtotime($key))."', ".$value.", ".$login["EE"]."],";
+    }
+    ?>
+  ]);
+  var chart2 = new google.visualization.LineChart(document.getElementById('chart_div2'));
+  chart2.draw(data2, options);
 }
 </script>
 </head>
@@ -71,7 +85,8 @@ require("../res/template/header.php");
 <div class="row">
 	<div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10">
 		<h2>成就</h2>
-		<div id="chart_div"></div>
+    <div id="chart_div" class="visible-sm-block visible-md-block visible-lg-block"></div>
+		<div id="chart_div2" class="visible-xs-block"></div>
 <?php
 	include("../res/template/footer.php");
 ?>
