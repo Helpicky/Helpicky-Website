@@ -100,44 +100,29 @@ require("../res/template/header.php");
 						foreach($row as $temp){
 						?>
 							<li class="list-group-item" style="height: 120px">
-								<a style="display: block" href="../info/?fid=<?php echo $temp["fid"]; ?>&date=<?php echo $date; ?>&meal=<?php echo $meal; ?>">
-								<div class="col-xs-4 col-md-2">
-									<?php
-									if ($temp["hasphoto"] != 0) {
-									?><img src="../res/image/food/<?php echo $temp["familyid"]; ?>.jpg" style="max-height: 100px; max-width: 100%;"><?php
-									} else {
-									?><img src="../res/image/search/No_photo_available.png" style="max-height: 100px; max-width: 100%;"><?php
-									}
-									?>
-								</div>
-								<div class="col-xs-3 col-md-4">
-									<span><?php echo $temp["name"]; ?></span><br>
-									<span><?php echo $temp["calories"]; ?>大卡</span><br>
-									<?php
-									$allergenlist = checkallergen($login["allergen"], $temp["allergen"]);
-									if (count($allergenlist)) {
-										?><span style="color: red;"><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>過敏原警告</span><?php
-									}
-									?>
-								</div>
-								<div class="col-xs-3 col-md-4">
-									<span>平均<?php echo $temp["rating"]; ?>分</span><br>
-									<span>點擊<?php echo $temp["CTR"]; ?>次</span>
-								</div>
-								</a>
-								<div class="col-xs-2 col-md-2">
-									<a href="../diary/add.php?date=<?php echo $date; ?>&meal=<?php echo $meal; ?>&fid=<?php echo $temp["fid"]; ?>" class="btn btn-success btn-circle" role="button">
-										<span class="glyphicon glyphicon-plus"></span>
-									</a>
-									<?php
-									if (in_array($login["uid"], $cfg['system']['admin'])) {
-									?>
-									<a href="../hide/?fid=<?php echo $temp["fid"]; ?>" class="btn btn-danger" role="button">
-										隱藏
-									</a>
-									<?php
-									}
-									?>
+								<div class="row">
+									<div class="col-xs-6 col-sm-6">
+										<a href="../info/?fid=<?php echo $temp["fid"]; ?>&date=<?php echo $date; ?>&meal=<?php echo $meal; ?>">
+											<span><?php echo $temp["name"]; ?></span><br>
+											<span><?php echo $temp["calories"]; ?>大卡</span><br>
+											<?php
+											$allergenlist = checkallergen($login["allergen"], $temp["allergen"]);
+											if (count($allergenlist)) {
+												?><span style="color: red;"><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>過敏原警告</span><?php
+											}
+											?>
+										</a>
+									</div>
+									<div class="col-xs-4 col-sm-5">
+										<span>平均<?php echo $temp["rating"]; ?>分</span><br>
+										<span>點擊<?php echo $temp["CTR"]; ?>次</span>
+									</div>
+
+									<div class="col-xs-2 col-sm-1">
+										<a href="../diary/add.php?date=<?php echo $date; ?>&meal=<?php echo $meal; ?>&fid=<?php echo $temp["fid"]; ?>" class="btn btn-success btn-circle" role="button">
+											<span class="glyphicon glyphicon-plus"></span>
+										</a>
+									</div>
 								</div>
 							</li>
 						<?php
