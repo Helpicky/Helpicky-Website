@@ -102,17 +102,7 @@ require("../res/template/header.php");
 						?>
 							<li class="list-group-item" style="height: 120px">
 								<div class="row">
-									<div class="col-xs-4 col-sm-3 col-md-2">
-										<?php
-										if ($temp["hasphoto"] != 0) {
-										?><img src="../res/image/food/<?php echo $temp["familyid"]; ?>.jpg" style="max-height: 100px; max-width: 100%;"><?php
-										} else {
-										?><img src="../res/image/search/No_photo_available.png" style="max-height: 100px; max-width: 100%;"><?php
-										}
-										?>
-									</div>
-
-									<div class="col-xs-6 col-sm-4 col-md-5">
+									<div class="col-xs-6 col-sm-6">
 										<a href="../info/?fid=<?php echo $temp["fid"]; ?>&date=<?php echo $date; ?>&meal=<?php echo $meal; ?>">
 											<span><?php echo $temp["name"]; ?></span><br>
 											<span><?php echo $temp["calories"]; ?>大卡</span><br>
@@ -124,7 +114,7 @@ require("../res/template/header.php");
 											?>
 										</a>
 									</div>
-									<div class="hidden-xs col-sm-4">
+									<div class="col-xs-4 col-sm-5">
 										<span>平均<?php echo $temp["rating"]; ?>分</span><br>
 										<span>點擊<?php echo $temp["CTR"]; ?>次</span>
 									</div>
