@@ -34,6 +34,9 @@
 					<li>
 						<a href="../recommend/">推薦</a>
 					</li>
+					<li>
+						<a href="../achievement/">成就</a>
+					</li>
 					<?php
 					}
 					?>
