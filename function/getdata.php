@@ -1,5 +1,15 @@
 <?php
 require_once("../function/SQL-function/sql.php");
+
+function getfood($fid){
+	$query = new query;
+	$query->table = "food";
+	$query->where = array(
+		array("fid", $fid)
+	);
+	return fetchone(SELECT($query));
+}
+
 function getrating($fid){
 	$query = new query;
 	$query->table = "rating";

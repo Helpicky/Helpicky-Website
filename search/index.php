@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
 require("../function/common.php");
+require("../function/checkallergen.php");
 if($login === false)header("Location: ../login/");
 $search = $_GET["name"] ?? "";
 $date = $_GET["date"] ?? "";
@@ -110,9 +111,17 @@ require("../res/template/header.php");
 									}
 									?>
 								</div>
-								<div class="col-xs-6 col-md-8">
+								<div class="col-xs-3 col-md-4">
 									<span><?php echo $temp["name"]; ?></span><br>
 									<span><?php echo $temp["calories"]; ?>大卡</span><br>
+									<?php
+									$allergenlist = checkallergen($login["allergen"], $temp["allergen"]);
+									if (count($allergenlist)) {
+										?><span style="color: red;"><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>過敏原警告</span><?php
+									}
+									?>
+								</div>
+								<div class="col-xs-3 col-md-4">
 									<span>平均<?php echo $temp["rating"]; ?>分</span><br>
 									<span>點擊<?php echo $temp["CTR"]; ?>次</span>
 								</div>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
 require("../function/common.php");
+require("../function/checkallergen.php");
 if($login === false)header("Location: ../login/");
 $fid = $_GET["fid"];
 $query = new query;
@@ -53,6 +54,11 @@ $query->where = array(
 	array("fid", $fid)
 );
 $food = fetchone(SELECT($query));
+$allergenlist = checkallergen($login["allergen"], $food["allergen"]);
+if (count($allergenlist)) {
+	addmsgbox("danger", '<span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+過敏原警告！此產品包含以下的過敏原：'.implode("、", $allergenlist));
+}
 ?>
 <html lang="zh-Hant-TW">
 <head>
