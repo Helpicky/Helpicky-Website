@@ -98,7 +98,9 @@ require("../res/template/header.php");
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="myModalLabel">產品資訊 來源：全家食在購安心</h4>
+						<h4 class="modal-title" id="myModalLabel">
+							產品資訊　<small>來源：全家食在購安心　連結：<a href="http://foodsafety.family.com.tw/index.php/resume/food?product_id=<?php echo $food["familyid"]; ?>" target="_blank">http://foodsafety.family.com.tw/index.php/resume/food?product_id=<?php echo $food["familyid"]; ?></a></small>
+						</h4>
 					</div>
 					<div class="modal-body">
 						<iframe src="http://foodsafety.family.com.tw/index.php/resume/food?product_id=<?php echo $food["familyid"]; ?>" style="width: 100%; height: 400px;"></iframe>
