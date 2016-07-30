@@ -185,7 +185,7 @@ require("../res/template/header.php");
 			$query->table = "allergen";
 			$row = SELECT($query);
 			foreach ($row as $temp) {
-				?><label><input type="checkbox" name="allergen[]" value="<?php echo $temp["id"]; ?>" <?php echo (in_array($temp["id"], $login["allergen"])?"checked":""); ?> > <?php echo $temp["name"]; ?></label><br><?php
+				?><label><input type="checkbox" name="allergen[]" value="<?php echo $temp["id"]; ?>" <?php echo (in_array($temp["id"], explode(",", $login["allergen"]))?"checked":""); ?> > <?php echo $temp["name"]; ?></label><br><?php
 			}
 			?>
 			</div></td>
