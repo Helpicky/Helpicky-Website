@@ -15,7 +15,7 @@ else if (isset($_POST["submit"])) {
 		array("stress_factor", $_POST["stress_factor"]),
 		array("EE", $_POST["EE"]),
 		array("EE_diff", $_POST["EE_diff"]),
-		array("allergen", implode(",", $_POST["allergen"]))
+		array("allergen", implode(",", $_POST["allergen"]??array()))
 	);
 	if (isset($_POST["gender"])) {
 		$query->value[] = array("gender", $_POST["gender"]);

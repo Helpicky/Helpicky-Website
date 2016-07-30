@@ -7,6 +7,7 @@ foreach ($row as $temp) {
 	$allergenname[$temp["id"]] = $temp["name"];
 }
 function checkallergen($user, $food){
+	if ($user == "" || $food == "") return array();
 	global $allergenname;
 	$user = explode(",", $user);
 	$food = explode(",", $food);
