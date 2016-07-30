@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 require("../function/common.php");
-if($login === false)header("Location: ../login/");
+// if($login === false)header("Location: ../login/");
 $fid = $_GET["fid"];
 $query = new query;
 $query->table = "rating";
@@ -63,6 +63,11 @@ showmeta();
 ?>
 <title>產品資訊-<?php echo $cfg['website']['name']; ?></title>
 <script src="../res/js/bootstrap-rating-input.js"></script>
+<!-- <link rel="stylesheet" href="../res/css/star-rating.min.css" media="all" type="text/css"/>
+<link rel="stylesheet" href="../res/css/theme-krajee-fa.min.css" media="all" type="text/css"/>
+<link rel="stylesheet" href="../res/css/theme-krajee-svg.min.css" media="all" type="text/css"/>
+<link rel="stylesheet" href="../res/css/theme-krajee-uni.min.css" media="all" type="text/css"/>
+<script src="../res/js/star-rating.min.js" type="text/javascript"></script> -->
 </head>
 <body Marginwidth="-1" Marginheight="-1" Topmargin="0" Leftmargin="0">
 <div id="fb-root"></div>
@@ -129,6 +134,15 @@ require("../res/template/header.php");
 		?>
 		<span style="font-size: 25px"><?php echo $count; ?>個人吃過 <?php echo $ratingall["count"]; ?>個人評分 平均<?php echo round($ratingall["avg"], 1); ?>分 點擊量<?php echo $food["CTR"]; ?>次</span>
 		<form method="post" id="ratingf">
+			<!-- <span style="font-size: 25px">我的評分</span> <input id="myrating" name="rating" class="rating rating-loading" value="<?php echo $rating; ?>" data-min="0" data-max="5" data-step="1" data-size="md">
+			<script>
+			$(document).on('ready', function(){
+			    $('.myrating').rating({
+			        starCaptions: {1: '', 2: '', 3: '', 4: '', 5: ''},
+  					starCaptionClasses: {1: 'text-danger', 2: 'text-warning', 3: 'text-info', 4: 'text-primary', 5: 'text-success'}
+			    });
+			});
+			</script> -->
 			<span style="font-size: 25px">我的評分 <input type="number" name="rating" class="rating" id="ratingi" data-clearable="" value="<?php echo $rating; ?>"></span>
 			<script>
 				$(function(){
@@ -142,6 +156,7 @@ require("../res/template/header.php");
 			<div class="col-md-3 text-center">
 				<span style="font-size: 50px"><?php echo number_format($ratingall["avg"], 1); ?></span><br>
 				<span class="glyphicon glyphicon-user"></span> 總評分次數：<?php echo $ratingall["count"]; ?>
+				<!-- <input type="number" class="rating" value="<?php echo number_format($ratingall["rating"], 1); ?>" data-readonly> -->
 			</div>
 			<?php
 			?>

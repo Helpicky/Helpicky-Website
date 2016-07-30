@@ -32,6 +32,9 @@
 						<a href="../search/">搜尋</a>
 					</li>
 					<li>
+						<a href="../info/?fid=<?php echo rand(1,3003); ?>">隨機產品</a>
+					</li>
+					<li>
 						<a href="../recommend/">推薦</a>
 					</li>
 					<?php
@@ -47,6 +50,13 @@
 					</li>
 					<?php
 					} else {
+						if (in_array($login["uid"], $cfg['system']['admin'])) {
+					?>
+					<li>
+						<a href="#">你是管理員</a>
+					</li>
+					<?php
+						}
 					?>
 					<li>
 						<a href="../setting/">設定</a>

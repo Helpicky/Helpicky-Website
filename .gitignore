@@ -1,2 +1,10 @@
 config/config.php
 log/
+res/js/
+res/image/
+hide/index.php
+function/quaggaJS/
+function/scan/
+res/audio/
+res/css/*krajee*.css
+res/css/star-rating.min.css
