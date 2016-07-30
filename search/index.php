@@ -28,8 +28,7 @@ require("../res/template/header.php");
 					<input type="hidden" name="date" value="<?php echo $date; ?>">
 					<input type="hidden" name="meal" value="<?php echo $meal; ?>">
 					<div class="input-group">
-						<span class="input-group-addon">搜尋</span>
-						<input class="form-control" name="name" type="text" value="<?php echo @$search; ?>" maxlength="20" autofocus>
+						<input class="form-control" name="name" type="text" value="<?php echo $search; ?>" placeholder="搜尋" maxlength="20" autofocus>
 						<span class="input-group-btn">
 							<button type="submit" class="btn btn-info">
 								<span class="glyphicon glyphicon-search"></span>

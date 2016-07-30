@@ -61,6 +61,16 @@
 					}
 					?>
 				</ul>
+				<form class="navbar-form" role="search" action="../search/">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="搜尋" name="name">
+						<span class="input-group-btn">
+							<button type="submit" class="btn btn-info">
+								<span class="glyphicon glyphicon-search"></span>
+							</button>
+						</span>
+					</div>
+				</form>
 			</nav>
 		</div>
 	</header>
