@@ -3,6 +3,7 @@
 require("../function/common.php");
 if($login === false)header("Location: ../login/");
 $date = $_GET["date"] ?? date("Y-m-d");
+$show = $_GET["show"] ?? "";
 ?>
 <html lang="zh-Hant-TW">
 <head>
@@ -22,14 +23,14 @@ require("../res/template/header.php");
 	<?php
 	$week = array("日", "一", "二", "三", "四", "五", "六");
 	?>
-	<h2>日記 <?php echo $date; ?> 星期<?php echo $week[date("w", strtotime($date))]; ?></h2>
+	<h2>日記 <input type="date" name="date" value="<?php echo $date; ?>" max="<?php echo date("Y-m-d"); ?>" style="background-color: #efede9;" onchange="location='?date='+this.value+'&show=<?php echo $show; ?>'"> 星期<?php echo $week[date("w", strtotime($date))]; ?></h2>
 	<ul class="pager">
-		<li><a href="?date=<?php echo date("Y-m-d", strtotime($date)-86400); ?>&meal=<?php echo $meal; ?>">←  前一天</a></li>
+		<li><a href="?date=<?php echo date("Y-m-d", strtotime($date)-86400); ?>&show=<?php echo $show; ?>">←  前一天</a></li>
 		<?php
 		if ($date < date("Y-m-d")) {
 		?>
-		<li><a href="?date=<?php echo date("Y-m-d", strtotime($date)+86400); ?>&meal=<?php echo $meal; ?>">後一天  →</a></li>
-		<li><a href="?date=<?php echo date("Y-m-d"); ?>&meal=<?php echo $meal; ?>">今天  →→</a></li>
+		<li><a href="?date=<?php echo date("Y-m-d", strtotime($date)+86400); ?>&show=<?php echo $show; ?>">後一天  →</a></li>
+		<li><a href="?date=<?php echo date("Y-m-d"); ?>&show=<?php echo $show; ?>">今天  →→</a></li>
 		<?php
 		}
 		?>
@@ -105,7 +106,7 @@ require("../res/template/header.php");
 ?>
 <script type="text/javascript">
 	<?php
-	foreach (explode(",", $_GET["show"]) as $temp) {
+	foreach (explode(",", $show) as $temp) {
 	echo "change_stats(".$temp.");\n";
 	}
 	?>
