@@ -20,7 +20,7 @@ showmeta();
 require("../res/template/header.php");
 ?>
 <div class="row">
-	<div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10">
+	<div class="col-xs-12 col-sm-offset-2 col-sm-8 col-lg-offset-2 col-lg-8">
 		<h2>搜尋</h2>
 		<div class="row">
 			<div class="col-xs-12">
@@ -113,12 +113,12 @@ require("../res/template/header.php");
 											?>
 										</a>
 									</div>
-									<div class="col-xs-4 col-sm-5">
+									<div class="col-xs-4 col-sm-4">
 										<span>平均<?php echo $temp["rating"]; ?>分</span><br>
 										<span>點擊<?php echo $temp["CTR"]; ?>次</span>
 									</div>
 
-									<div class="col-xs-2 col-sm-1">
+									<div class="col-xs-2 col-sm-2">
 										<a href="../diary/add.php?date=<?php echo $date; ?>&meal=<?php echo $meal; ?>&fid=<?php echo $temp["fid"]; ?>" class="btn btn-success btn-circle" role="button">
 											<span class="glyphicon glyphicon-plus"></span>
 										</a>
