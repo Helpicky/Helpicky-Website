@@ -135,52 +135,53 @@ require("../res/template/header.php");
 		$count = fetchone(SELECT($query))["count"];
 		$ratingall = getrating($food["fid"]);
 		?>
-		<span style="font-size: 25px"><?php echo $count; ?>個人吃過 <?php echo $ratingall["count"]; ?>個人評分 平均<?php echo round($ratingall["avg"], 1); ?>分 點擊量<?php echo $food["CTR"]; ?>次</span>
-		<form method="post" id="ratingf">
-			<span style="font-size: 25px">我的評分 <input type="number" name="rating" class="rating" id="ratingi" data-clearable="" value="<?php echo $rating; ?>"></span>
-			<script>
-				$(function(){
-					$('#ratingi').on('change', function(){
-						ratingf.submit();
-					});
-				});
-			</script>
-		</form>
 		<div class="row">
-			<div class="col-md-3 text-center">
+			<div class="col-xs-12 col-sm-5 col-md-5 col-lg-4 text-center">
 				<span style="font-size: 50px"><?php echo number_format($ratingall["avg"], 1); ?></span><br>
-				<span class="glyphicon glyphicon-user"></span> 總評分次數：<?php echo $ratingall["count"]; ?>
+				<span class="glyphicon glyphicon-user"></span> 總評分次數：<?php echo $ratingall["count"]; ?><br>
+				<span class="glyphicon glyphicon-eye-open"></span> 總點擊次數：<?php echo $food["CTR"]; ?><br>
+				<span class="glyphicon glyphicon-cutlery"></span> 總食用次數：<?php echo $count; ?><br>
+				<form method="post" id="ratingf">
+					<span style="font-size: 25px">我的評分 <input type="number" name="rating" class="rating" id="ratingi" data-clearable="" value="<?php echo $rating; ?>"></span>
+					<script>
+						$(function(){
+							$('#ratingi').on('change', function(){
+								ratingf.submit();
+							});
+						});
+					</script>
+				</form>
 			</div>
 			<?php
 			?>
-			<div class="col-md-9 text-left">
+			<div class="col-xs-12 col-sm-7 col-md-7 col-lg-8 text-left">
 				<div class="row">
-					<div class="col-md-1"><span class="glyphicon glyphicon-star"></span>5</div>
-					<div class="col-md-11">
+					<div class="col-xs-2 col-lg-1 text-right"><span class="glyphicon glyphicon-star"></span>5</div>
+					<div class="col-xs-10 col-lg-11">
 						<div class="progress"><div class="progress-bar progress-bar-primary" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($ratingall[5]/$ratingall["maxcount"]);?>%"></div></div>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-1"><span class="glyphicon glyphicon-star"></span>4</div>
-					<div class="col-md-11">
+					<div class="col-xs-2 col-lg-1 text-right"><span class="glyphicon glyphicon-star"></span>4</div>
+					<div class="col-xs-10 col-lg-11">
 						<div class="progress"><div class="progress-bar progress-bar-info" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($ratingall[4]/$ratingall["maxcount"]);?>%"></div></div>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-1"><span class="glyphicon glyphicon-star"></span>3</div>
-					<div class="col-md-11">
+					<div class="col-xs-2 col-lg-1 text-right"><span class="glyphicon glyphicon-star"></span>3</div>
+					<div class="col-xs-10 col-lg-11">
 						<div class="progress"><div class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($ratingall[3]/$ratingall["maxcount"]);?>%"></div></div>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-1"><span class="glyphicon glyphicon-star"></span>2</div>
-					<div class="col-md-11">
+					<div class="col-xs-2 col-lg-1 text-right"><span class="glyphicon glyphicon-star"></span>2</div>
+					<div class="col-xs-10 col-lg-11">
 						<div class="progress"><div class="progress-bar progress-bar-warning" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($ratingall[2]/$ratingall["maxcount"]);?>%"></div></div>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-1"><span class="glyphicon glyphicon-star"></span>1</div>
-					<div class="col-md-11">
+					<div class="col-xs-2 col-lg-1 text-right"><span class="glyphicon glyphicon-star"></span>1</div>
+					<div class="col-xs-10 col-lg-11">
 						<div class="progress"><div class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($ratingall[1]/$ratingall["maxcount"]);?>%"></div></div>
 					</div>
 				</div>
