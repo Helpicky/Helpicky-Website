@@ -19,11 +19,17 @@ showmeta();
 require("../res/template/header.php");
 ?>
 <div class="row">
-	<div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10">
+	<div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
 	<?php
 	$week = array("日", "一", "二", "三", "四", "五", "六");
 	?>
-	<h2>日記 <input type="date" name="date" value="<?php echo $date; ?>" max="<?php echo date("Y-m-d"); ?>" style="background-color: #efede9;" onchange="location='?date='+this.value+'&show=<?php echo $show; ?>'"> 星期<?php echo $week[date("w", strtotime($date))]; ?></h2>
+	<h2>
+		<div class="row">
+			<div class="col-xs-12 col-sm-2">日記</div>
+			<div class="col-sm-10 hidden-xs"><input type="date" name="date" value="<?php echo $date; ?>" max="<?php echo date("Y-m-d"); ?>" style="background-color: #efede9;" onchange="location='?date='+this.value+'&show=<?php echo $show; ?>'"> 星期<?php echo $week[date("w", strtotime($date))]; ?></div>
+			<div class="col-xs-12 visible-xs-block"><small><input type="date" name="date" value="<?php echo $date; ?>" max="<?php echo date("Y-m-d"); ?>" style="background-color: #efede9;" onchange="location='?date='+this.value+'&show=<?php echo $show; ?>'"> 星期<?php echo $week[date("w", strtotime($date))]; ?></small></div>
+		</div>
+	</h2>
 	<ul class="pager">
 		<li><a href="?date=<?php echo date("Y-m-d", strtotime($date)-86400); ?>&show=<?php echo $show; ?>">←  前一天</a></li>
 		<?php
@@ -52,8 +58,8 @@ require("../res/template/header.php");
 	for ($meal=1; $meal <= 4; $meal++) { 
 	?>
 	<div class="row">
-		<div class="col-xs-3 col-md-1"><img src="../res/image/diary/meal<?php echo $meal; ?>.png" width="50px" onclick="change_stats(<?php echo $meal; ?>)"></div>
-		<div class="col-xs-9 col-md-11">
+		<div class="col-xs-2 col-md-1"><img src="../res/image/diary/meal<?php echo $meal; ?>.png" width="50px" onclick="change_stats(<?php echo $meal; ?>)"></div>
+		<div class="col-xs-10 col-md-11">
 		<div id="meal<?php echo $meal; ?>tool" style="display: none; padding-top: 0px; padding-bottom: 0px;" class="jumbotron">
 			<button type="button" class="btn btn-info" style="color: #000; background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0);" onclick="alert('此功能尚未完成唷~')">
 			<span class="glyphicon glyphicon-barcode"></span>

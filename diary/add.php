@@ -58,17 +58,18 @@ require("../res/template/header.php");
 <div class="row">
 	<div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10">
 		<h2>新增日記</h2>
-		<form method="get">
+		<form method="get" id="form">
 			<input type="hidden" name="fid" value="<?php echo $fid ?? ""; ?>">
+			<input type="hidden" name="meal" id="meal">
 			<input type="hidden" name="allergencheck">
 			<div class="input-group">
 				<span class="input-group-addon">日期</span>
 				<input class="form-control" name="date" type="date" value="<?php echo $date; ?>" required>
 			</div>
-			<button type="submit" name="meal" value="1"><img src="../res/image/diary/meal1.png" width="50px"></button>
-			<button type="submit" name="meal" value="2"><img src="../res/image/diary/meal2.png" width="50px"></button>
-			<button type="submit" name="meal" value="3"><img src="../res/image/diary/meal3.png" width="50px"></button>
-			<button type="submit" name="meal" value="4"><img src="../res/image/diary/meal4.png" width="50px"></button>
+			<img src="../res/image/diary/meal1.png" width="50px" onclick="meal.value=1; form.submit();">
+			<img src="../res/image/diary/meal2.png" width="50px" onclick="meal.value=2; form.submit();">
+			<img src="../res/image/diary/meal3.png" width="50px" onclick="meal.value=3; form.submit();">
+			<img src="../res/image/diary/meal4.png" width="50px" onclick="meal.value=4; form.submit();">
 		</form>
 	</div>
 </div>
