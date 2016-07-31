@@ -178,6 +178,14 @@ require("../res/template/header.php");
 			<td><div class="col-xs-12"><input type="number" min="-999" max="999" name="EE_diff" value="<?php echo $login['EE_diff']; ?>"></div></td>
 		</tr>
 		<tr>
+			<td>實際所需熱量</td>
+			<td>
+				<div class="col-xs-12 ">
+					<?php echo $login['AE']; ?>
+				</div>
+			</td>
+		</tr>
+		<tr>
 			<td>過敏原</td>
 			<td><div class="col-xs-12">
 			<?php
@@ -196,6 +204,18 @@ require("../res/template/header.php");
 			修改
 		</button>
 		</form>
+	</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+	$(window).keydown(function(event){
+		if(event.keyCode == 13) {
+			event.preventDefault();
+			return false;
+		}
+	});
+});
+</script>
 <?php
 	include("../res/template/footer.php");
 ?>

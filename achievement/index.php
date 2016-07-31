@@ -45,7 +45,7 @@ function drawLineColors() {
   data.addRows([
   	<?php
   	foreach ($diary as $key => $value) {
-  		echo "['".date("d", strtotime($key))."', ".$value.", ".$login["EE"]."],";
+  		echo "['".date("d", strtotime($key))."', ".$value.", ".$login["AE"]."],";
   	}
   	?>
   ]);
@@ -69,7 +69,7 @@ function drawLineColors() {
   data2.addRows([
     <?php
     foreach ($diary as $key => $value) {
-      if($key >= date("Y-m-d", time()-86400*6))echo "['".date("d", strtotime($key))."', ".$value.", ".$login["EE"]."],";
+      if($key >= date("Y-m-d", time()-86400*6))echo "['".date("d", strtotime($key))."', ".$value.", ".$login["AE"]."],";
     }
     ?>
   ]);
