@@ -84,17 +84,12 @@ require("../res/template/header.php");
 		$row = SELECT($query);
 		if (count($row) != 0) {
 			foreach ($row as $temp) {
-			$query2 = new query;
-			$query2->table = "food";
-			$query2->where = array(
-				array("fid", $temp["fid"])
-			);
-			$row2 = fetchone(SELECT($query2));
-			$sum["calories"] += $row2["calories"];
-			?>
-			<a href="../info/?fid=<?php echo $row2["fid"]; ?>"><?php echo $row2["name"]; ?></a>
-			<a href="del.php?hash=<?php echo $temp["hash"];?>&date=<?php echo $date; ?>&meal=<?php echo $temp["meal"]; ?>"><span class="glyphicon glyphicon-remove"></span></a><br>
-			<?php
+				$food = getfood($temp["fid"]);
+				$sum["calories"] += $food["calories"];
+				?>
+				<a href="../info/?fid=<?php echo $food["fid"]; ?>"><?php echo $food["name"]; ?></a>
+				<a href="del.php?hash=<?php echo $temp["hash"];?>&date=<?php echo $date; ?>&meal=<?php echo $temp["meal"]; ?>"><span class="glyphicon glyphicon-remove"></span></a><br>
+				<?php
 			}
 		} else {
 			echo "目前沒有加入";

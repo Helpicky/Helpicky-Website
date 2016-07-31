@@ -7,7 +7,18 @@ function getfood($fid){
 	$query->where = array(
 		array("fid", $fid)
 	);
-	return fetchone(SELECT($query));
+	$food = fetchone(SELECT($query));
+	if ($food["servings"] != 0) {
+		$food["calories"] *= $food["servings"];
+		$food["protein"] *= $food["servings"];
+		$food["fats"] *= $food["servings"];
+		$food["saturated_fats"] *= $food["servings"];
+		$food["trans_fats"] *= $food["servings"];
+		$food["carbohydrates"] *= $food["servings"];
+		$food["sodium"] *= $food["servings"];
+		$food["sugar"] *= $food["servings"];
+	}
+	return $food;
 }
 
 function getrating($fid){

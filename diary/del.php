@@ -8,26 +8,21 @@ if (isset($_GET["hash"])) {
 	$query->where = array(
 		array("hash", $_GET["hash"])
 	);
-	$row = fetchone(SELECT($query));
+	$diary = fetchone(SELECT($query));
 	$query = new query;
 	$query->table = "diary";
 	$query->where = array(
 		array("hash", $_GET["hash"])
 	);
 	DELETE($query);
-	$query = new query;
-	$query->table = "food";
-	$query->where = array(
-		array("fid", $row["fid"])
-	);
-	$row2 = fetchone(SELECT($query));
+	$food = getfood($diary["fid"]);
 	$query = new query;
 	$query->table = "food";
 	$query->value = array(
-		array("diarycnt", ($row2["diarycnt"]-1))
+		array("diarycnt", ($food["diarycnt"]-1))
 	);
 	$query->where = array(
-		array("fid", $row["fid"])
+		array("fid", $diary["fid"])
 	);
 	UPDATE($query);
 	header("Location: ./?date=".$_GET["date"]."&show=".$_GET["meal"]);

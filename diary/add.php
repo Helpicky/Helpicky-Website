@@ -27,14 +27,8 @@ if (!isset($fid)) {
 	INSERT($query);
 	$query = new query;
 	$query->table = "food";
-	$query->where = array(
-		array("fid", $fid)
-	);
-	$row = fetchone(INSERT($query));
-	$query = new query;
-	$query->table = "food";
 	$query->value = array(
-		array("diarycnt", ($row["diarycnt"]+1))
+		array("diarycnt", ($food["diarycnt"]+1))
 	);
 	$query->where = array(
 		array("fid", $fid)

@@ -13,11 +13,11 @@ $nutritionlist = array(
 	array("sugar", "糖"),
 	array("sodium", "鈉")
 );
-$diary = array();
+$nutritionsum = array();
 for ($i=1-$cfg['achievement']['show_days']; $i <= 0; $i++) { 
-	$diary[date("Y-m-d", time()+86400*$i)] = array();
-	foreach ($nutritionlist as $temp) {
-		$diary[date("Y-m-d", time()+86400*$i)][$temp[0]] = 0;
+	$nutritionsum[date("Y-m-d", time()+86400*$i)] = array();
+	foreach ($nutritionlist as $nutrition) {
+		$nutritionsum[date("Y-m-d", time()+86400*$i)][$nutrition[0]] = 0;
 	}
 }
 $query = new query;
@@ -26,20 +26,15 @@ $query->where = array(
 	array("uid", $login["uid"]),
 	array("date", date("Y-m-d", time()-86400*($cfg['achievement']['show_days']-1)), ">=")
 );
-$row = SELECT($query);
-foreach ($row as $temp) {
-	$query2 = new query;
-	$query2->table = "food";
-	$query2->where = array(
-		array("fid", $temp["fid"])
-	);
-	$row2 = fetchone(SELECT($query2));
-	foreach ($nutritionlist as $temp2) {
-		$diary[$temp["date"]][$temp2[0]] += $row2[$temp2[0]];
+$diarylist = SELECT($query);
+foreach ($diarylist as $diary) {
+	$food = getfood($diary["fid"]);
+	foreach ($nutritionlist as $nutrition) {
+		$nutritionsum[$diary["date"]][$nutrition[0]] += $food[$nutrition[0]];
 	}
 }
-$nutrition = Nutrition($login["AE"]);
-$nutrition["calories"] = $login["AE"];
+$usergoal = Nutrition($login["AE"]);
+$usergoal["calories"] = $login["AE"];
 ?>
 <html lang="zh-Hant-TW">
 <head>
@@ -55,7 +50,7 @@ google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(drawLineColors);
 function drawLineColors() {
 	<?php 
-	foreach ($nutritionlist as $temp) {
+	foreach ($nutritionlist as $nutrition) {
 	?>
 	var data = new google.visualization.DataTable();
 	data.addColumn('string', '日期');
@@ -63,8 +58,8 @@ function drawLineColors() {
 	data.addColumn('number', '所需');
 	data.addRows([
 		<?php
-		foreach ($diary as $key => $value) {
-			echo "['".date("d", strtotime($key))."', ".$value[$temp[0]].", ".$nutrition[$temp[0]]."],";
+		foreach ($nutritionsum as $date => $nutritionday) {
+			echo "['".date("d", strtotime($date))."', ".$nutritionday[$nutrition[0]].", ".$usergoal[$nutrition[0]]."],";
 		}
 		?>
 	]);
@@ -73,11 +68,11 @@ function drawLineColors() {
 			title: '日期'
 		},
 		vAxis: {
-			title: '<?php echo $temp[1]; ?>'
+			title: '<?php echo $nutrition[1]; ?>'
 		},
 		colors: ['#0011FF', '#FF0011']
 	};
-	new google.visualization.LineChart(document.getElementById('<?php echo $temp[0]; ?>_chart_div')).draw(data, options);
+	new google.visualization.LineChart(document.getElementById('<?php echo $nutrition[0]; ?>_chart_div')).draw(data, options);
 	<?php
 	}
 	?>
@@ -92,8 +87,8 @@ require("../res/template/header.php");
 	<div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10">
 		<h2>成就</h2>
 		<?php
-		foreach ($nutritionlist as $temp) {
-			echo '<div id="'.$temp[0].'_chart_div"></div>';
+		foreach ($nutritionlist as $nutrition) {
+			echo '<div id="'.$nutrition[0].'_chart_div"></div>';
 		}
 		?>
 <?php
