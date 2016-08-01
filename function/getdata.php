@@ -54,4 +54,15 @@ function getrating($fid){
 	$rating["maxcount"] /= 100;
 	return $rating;
 }
+
+function getnutritionlist(){
+	$query = new query;
+	$query->table = "nutrition";
+	$row = SELECT($query);
+	$nutritionlist = array();
+	foreach ($row as $key => $value) {
+		$nutritionlist[$key] = $value;
+	}
+	return $nutritionlist;
+}
 ?>

@@ -15,18 +15,18 @@ function EE($BEE, $activity_factor, $stress_factor){
 
 function Nutrition($EE){
 	$data = array(
-		'protein' => $EE * 0.15,
-		'carbohydrates' => $EE * 0.60,
-		'fats' => $EE * 0.25,
-		'saturated_fats' => $EE * 0.1,
-		'trans_fats' => $EE * 0.01,
-		'sugar' => $EE * 0.1,
-		'sodium' => 2000
+		'protein' => array("min" => $EE * 0.10 / 4, "recommend" => $EE * 0.12 / 4, "max" => $EE * 0.15 / 4),
+		'carbohydrates' => array("min" => $EE * 0.50 / 4, "recommend" => $EE * 0.58 / 4, "max" => $EE * 0.65 / 4),
+		'fats' => array("min" => $EE * 0.25 / 9, "recommend" => $EE * 0.30 / 9, "max" => $EE * 0.35 / 9),
+		'saturated_fats' => array("min" => 0, "recommend" => 0, "max" => $EE * 0.35 / 9),
+		'trans_fats' => array("min" => 0, "recommend" => 0, "max" => $EE * 0.01 / 9),
+		'sugar' => array("min" => 0, "recommend" => 0, "max" => $EE * 0.1 / 4),
+		'sodium' => array("min" => 0, "recommend" => 0, "max" => 2000),
 	);
 	if ($EE >= 2700) {
-		$data['milk'] = 480;
+		$data['milk'] = array("min" => 480, "recommend" => 0, "max" => 0);
 	} else {
-		$data['milk'] = 360;
+		$data['milk'] = array("min" => 360, "recommend" => 0, "max" => 0);
 	}
 	return $data;
 }
