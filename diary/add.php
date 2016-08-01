@@ -60,9 +60,10 @@ require("../res/template/header.php");
 				<span class="input-group-addon">日期</span>
 				<input class="form-control" name="date" type="date" value="<?php echo $date; ?>" required>
 			</div>
-			<img src="../res/image/diary/meal1.png" width="50px" onclick="meal.value=1; form.submit();">
-			<img src="../res/image/diary/meal2.png" width="50px" onclick="meal.value=2; form.submit();">
-			<img src="../res/image/diary/meal3.png" width="50px" onclick="meal.value=3; form.submit();">
+			<br>
+			<img src="../res/image/diary/meal1.png" width="50px" onclick="meal.value=1; form.submit();">　
+			<img src="../res/image/diary/meal2.png" width="50px" onclick="meal.value=2; form.submit();">　
+			<img src="../res/image/diary/meal3.png" width="50px" onclick="meal.value=3; form.submit();">　
 			<img src="../res/image/diary/meal4.png" width="50px" onclick="meal.value=4; form.submit();">
 		</form>
 	</div>
