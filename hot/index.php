@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 require("../function/common.php");
-if($login === false)header("Location: ../login/");
+if($cfg['system']['require_login'] && $login === false)header("Location: ../login/");
 ?>
 <html lang="zh-Hant-TW">
 <head>
@@ -9,7 +9,7 @@ if($login === false)header("Location: ../login/");
 require("../res/template/comhead.php");
 showmeta();
 ?>
-<title>推薦-<?php echo $cfg['website']['name']; ?></title>
+<title>熱門商品-<?php echo $cfg['website']['name']; ?></title>
 </head>
 <body Marginwidth="-1" Marginheight="-1" Topmargin="0" Leftmargin="0">
 <?php
@@ -17,7 +17,7 @@ require("../res/template/header.php");
 ?>
 <div class="row">
 	<div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10">
-		<h2>推薦</h2>
+		<h2>熱門商品</h2>
 		<div class="row">
 			<div class="col-xs-12 col-sm-6 col-lg-3">
 				<h3>評分最高</h3>
@@ -78,7 +78,7 @@ require("../res/template/header.php");
 				<?php
 				$query = new query;
 				$query->table = "food";
-				$query->column = array("*", "(`diarycnt`*".$cfg['recommend']['index']['diarycnt']."+`rating`*".$cfg['recommend']['index']['rating']."+`CTR`*".$cfg['recommend']['index']['CTR'].") AS `index`");
+				$query->column = array("*", "(`diarycnt`*".$cfg['hot']['index']['diarycnt']."+`rating`*".$cfg['hot']['index']['rating']."+`CTR`*".$cfg['hot']['index']['CTR'].") AS `index`");
 				$query->where = array(
 					array("hide", "0")
 				);
