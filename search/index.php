@@ -2,7 +2,7 @@
 <?php
 require("../function/common.php");
 require("../function/checkallergen.php");
-if($login === false)header("Location: ../login/");
+if($cfg['system']['require_login'] && $login === false)header("Location: ../login/");
 $search = $_GET["name"] ?? "";
 $date = $_GET["date"] ?? "";
 $meal = $_GET["meal"] ?? "";
@@ -127,6 +127,10 @@ require("../res/template/header.php");
 							</li>
 						<?php
 						}
+					} else {
+					?>
+					<li>查無搜尋結果</li>
+					<?php
 					}
 				}
 				?>
