@@ -32,7 +32,7 @@
 						<a href="../search/">搜尋</a>
 					</li>
 					<li>
-						<a href="../recommend/">推薦</a>
+						<a href="../hot/">熱門商品</a>
 					</li>
 					<li>
 						<a href="../achievement/">成就</a>
