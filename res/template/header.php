@@ -29,13 +29,12 @@
 						<a href="../diary/">日記</a>
 					</li>
 					<li>
-						<a href="../search/">搜尋</a>
+						<a href="../achievement/">成就</a>
 					</li>
 					<li>
 						<a href="../hot/">熱門商品</a>
 					</li>
 					<li>
-						<a href="../achievement/">成就</a>
 					</li>
 					<?php
 					}
