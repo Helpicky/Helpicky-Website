@@ -2,7 +2,7 @@
 <?php
 require("../function/common.php");
 require("../function/checkallergen.php");
-if($login === false)header("Location: ../login/");
+if($cfg['system']['require_login'] && $login === false)header("Location: ../login/");
 $fid = $_GET["fid"];
 $query = new query;
 $query->table = "rating";
