@@ -109,6 +109,9 @@ require("../res/template/header.php");
 			<td>BMI</td>
 			<td><div class="col-xs-12">
 				<?php 
+				if ($login['weight'] == 0 || $login['height'] == 0) {
+					echo "資料不完全";
+				} else {
 					$BMI = round($login['weight'] / pow($login['height']/100, 2), 1);
 					echo $BMI."（";
 					if ($BMI < 18.5) {
@@ -123,6 +126,7 @@ require("../res/template/header.php");
 						echo "重度肥胖";
 					}
 					echo "）";
+				}
 				?>
 			</div></td>
 		</tr>
@@ -201,7 +205,7 @@ require("../res/template/header.php");
 		<tr>
 			<td>實際所需熱量</td>
 			<td>
-				<div class="col-xs-12 ">
+				<div class="col-xs-12">
 					<?php echo $login['AE']; ?>
 				</div>
 			</td>
