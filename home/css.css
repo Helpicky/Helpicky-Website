@@ -1,0 +1,27 @@
+body {
+	background: #EFEDE9;
+}
+
+.bs-docs-nav {
+	background-color: #FFFFFF;
+	margin: 0;
+}
+
+.navbar-toggle {
+	background-color: #FFFFFF;
+}
+
+.icon-bar {
+	/*background-color: #1634E8;*/
+	background-color: #23527C;
+}
+
+.btn-circle {
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	padding: 6px 0;
+	font-size: 12px;
+	line-height: 1.428571429;
+	border-radius: 15px;
+}
