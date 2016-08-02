@@ -42,7 +42,7 @@ if ($login !== false) {
 				);
 				$login = fetchone(SELECT($query));
 				addmsgbox("success", "自動新建帳戶");
-				?><script>setTimeout(function(){location="../home/";}, 1000)</script><?php
+				?><script>setTimeout(function(){location="../setting/";}, 1000)</script><?php
 			}
 			$cookie = getrandommd5();
 			$query = new query;
