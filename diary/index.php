@@ -66,10 +66,10 @@ require("../res/template/header.php");
 		<div class="col-xs-2 col-md-1"><img src="../res/image/diary/meal<?php echo $meal; ?>.png" width="50px" onclick="change_stats(<?php echo $meal; ?>)"></div>
 		<div class="col-xs-10 col-md-11">
 			<div id="meal<?php echo $meal; ?>tool" style="display: none; padding-top: 0px; padding-bottom: 0px;" class="jumbotron">
-				<button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="right" title="掃描條碼以加入日記" style="color: #000; background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0);" onclick="alert('掃描功能尚未完成唷~')">
+				<button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="bottom" title="掃描條碼以加入日記" style="color: #000; background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0);" onclick="alert('掃描功能尚未完成唷~')">
 					<span class="glyphicon glyphicon-barcode"></span>
 				</button>
-				<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="搜尋產品以加入日記" style="color: #000; background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0);" onclick="location='../search/?date=<?php echo $date; ?>&meal=<?php echo $meal; ?>'">
+				<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="搜尋產品以加入日記" style="color: #000; background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0);" onclick="location='../search/?date=<?php echo $date; ?>&meal=<?php echo $meal; ?>'">
 					<span class="glyphicon glyphicon-search"></span>
 				</button>
 			</div>
@@ -92,8 +92,8 @@ require("../res/template/header.php");
 					$food = getfood($temp["fid"]);
 					$sum["calories"] += $food["calories"];
 					?>
-					<a href="../info/?fid=<?php echo $food["fid"]; ?>"><?php echo $food["name"]; ?></a>
-					<a href="del.php?hash=<?php echo $temp["hash"];?>&date=<?php echo $date; ?>&meal=<?php echo $temp["meal"]; ?>"><span class="glyphicon glyphicon-remove"></span></a><br>
+					<a href="../info/?fid=<?php echo $food["fid"]; ?>" style="font-size:20px;"><?php echo $food["name"]; ?></a>
+					<a href="del.php?hash=<?php echo $temp["hash"];?>&date=<?php echo $date; ?>&meal=<?php echo $temp["meal"]; ?>" style="font-size:20px;"><span class="glyphicon glyphicon-remove"></span></a><br>
 					<?php
 				}
 			} else {
