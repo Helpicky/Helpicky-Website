@@ -106,6 +106,27 @@ require("../res/template/header.php");
 			<td><div class="col-xs-12"><input type="number" step="0.1" min="0" max="999.9" name="weight" value="<?php echo $login['weight']; ?>"></div></td>
 		</tr>
 		<tr>
+			<td>BMI</td>
+			<td><div class="col-xs-12">
+				<?php 
+					$BMI = round($login['weight'] / pow($login['height']/100, 2), 1);
+					echo $BMI."（";
+					if ($BMI < 18.5) {
+						echo "體重過輕";
+					} else if ($BMI < 24) {
+						echo "體重正常";
+					} else if ($BMI < 27) {
+						echo "輕度肥胖";
+					} else if ($BMI < 30) {
+						echo "中度肥胖";
+					} else {
+						echo "重度肥胖";
+					}
+					echo "）";
+				?>
+			</div></td>
+		</tr>
+		<tr>
 			<td>年齡</td>
 			<td><div class="col-xs-12"><input type="number" min="0" max="999" name="age" value="<?php echo $login['age']; ?>"></div></td>
 		</tr>
