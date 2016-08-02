@@ -1,18 +1,13 @@
 body {
-	background: #efede9;
-}
-
-.bs-docs-nav {
-	background-color: #FECB2C;
-	margin: 0;
+	background: #EFEDE9;
 }
 
 .navbar-toggle {
-	background-color: #802915;
+	background-color: rgba(0, 0, 0, 0.5);
 }
 
 .icon-bar {
-	background-color: #FECB2C;
+	background-color: #ADC7FD;
 }
 
 .btn-circle {
