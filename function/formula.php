@@ -30,4 +30,18 @@ function Nutrition($EE){
 	}
 	return $data;
 }
+
+function getMealNutrition($need, $eat, $get){
+	$distribute = array(
+		1 => array("protein"=>0.33, "fats"=>0.24, "carbohydrates"=>0.32),
+		2 => array("protein"=>0.34, "fats"=>0.38, "carbohydrates"=>0.34),
+		3 => array("protein"=>0.33, "fats"=>0.38, "carbohydrates"=>0.34)
+	);
+	$res = array(
+		"carbohydrates" => $need["carbohydrates"] * $distribute[$get]["carbohydrates"] - $eat[$get]["carbohydrates"],
+		"fats" => $need["fats"] * $distribute[$get]["fats"] - $eat[$get]["fats"],
+		"protein" => $need["protein"] * $distribute[$get]["protein"] - $eat[$get]["protein"]
+	);
+	return $res;
+}
 ?>

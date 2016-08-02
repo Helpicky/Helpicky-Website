@@ -32,9 +32,10 @@
 						<a href="../achievement/">成就</a>
 					</li>
 					<li>
-						<a href="../hot/">熱門商品</a>
+						<a href="../recommend/">飲食推薦</a>
 					</li>
 					<li>
+						<a href="../hot/">熱門商品</a>
 					</li>
 					<?php
 					}
