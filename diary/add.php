@@ -68,7 +68,7 @@ require("../res/template/header.php");
 			<input type="hidden" name="allergencheck">
 			<div class="input-group">
 				<span class="input-group-addon">日期</span>
-				<input class="form-control" name="date" type="date" value="<?php echo ($_GET["date"] ? $_GET["date"] : date("Y-m-d")); ?>" required>
+				<input class="form-control" name="date" type="date" value="<?php echo ($date ? $date : date("Y-m-d")); ?>" required>
 			</div>
 			<br>
 			<?php
