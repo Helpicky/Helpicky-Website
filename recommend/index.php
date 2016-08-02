@@ -21,7 +21,7 @@ require("../res/template/header.php");
 		<h2>飲食推薦</h2>
 		<div class="row">
 			<div class="col-xs-12">
-				你要推薦一套...？<br>
+				你要挑選一套...？<br>
 				<form method="post" id="form">
 					<input type="hidden" name="meal" id="meal">
 					<img src="../res/image/diary/meal1.png" width="50px" onclick="meal.value=1; form.submit();">　
@@ -119,7 +119,7 @@ require("../res/template/header.php");
 						default:
 							break;
 					}
-					echo "現有 ".count($mainlist)." 項主餐與 ".count($drinklist)." 項飲料進行搭配<br>";
+					// echo "現有 ".count($mainlist)." 項主餐與 ".count($drinklist)." 項飲料進行搭配<br>";
 					$grouplist=array();
 					foreach ($mainlist as $main) {
 						foreach ($drinklist as $drink) {
@@ -138,7 +138,7 @@ require("../res/template/header.php");
 						}
 					}
 					usort($grouplist, 'cmp');
-					echo count($grouplist)."項結果<br>";
+					// echo count($grouplist)."項結果<br>";
 					?>
 					<ul class="list-group" id="contact-list">
 					<?php
@@ -151,13 +151,13 @@ require("../res/template/header.php");
 										<a href="../info/?fid=<?php echo $temp["main"]; ?>" target="_blank"><?php echo getfood($temp["main"])["name"]; ?></a><br>
 										<a href="../info/?fid=<?php echo $temp["drink"]; ?>" target="_blank"><?php echo getfood($temp["drink"])["name"]; ?></a>
 									</div>
-									<div class="col-xs-4 col-sm-4">
-										碳水化合物:<?php echo $temp["carbohydrates"]; ?><br>
-										脂肪:<?php echo $temp["carbohydrates"]; ?><br>
-										蛋白質:<?php echo $temp["protein"]; ?><br>
+									<div class="col-xs-6 col-sm-4">
+										碳水化合物:<?php echo $temp["carbohydrates"]; ?>公克<br>
+										脂肪:<?php echo $temp["fats"]; ?>公克<br>
+										蛋白質:<?php echo $temp["protein"]; ?>公克<br>
 										<?php echo $temp["score"]; ?>分
 									</div>
-									<div class="col-xs-2 col-sm-2">
+									<div class="col-xs-12 col-sm-2">
 										<a href="../diary/add.php?date=<?php echo $date; ?>&meal=<?php echo $meal; ?>&fid=<?php echo $food["fid"]; ?>" class="btn btn-success btn-circle" role="button" onclick="alert('新增套餐功能尚未完成'); return false;">
 											<span class="glyphicon glyphicon-plus"></span>
 										</a>
