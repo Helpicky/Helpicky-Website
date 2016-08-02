@@ -3,6 +3,7 @@
 require("../function/common.php");
 require("../function/formula.php");
 if($login === false)header("Location: ../login/");
+$meal = $_POST["meal"] ?? null;
 ?>
 <html lang="zh-Hant-TW">
 <head>
@@ -30,7 +31,7 @@ require("../res/template/header.php");
 					<!-- <img src="../res/image/diary/meal4.png" width="50px" onclick="meal.value=4; form.submit();"> -->
 				</form>
 				<?php
-				if (isset($_POST["meal"])) {
+				if ($meal) {
 					for ($i=1; $i <= 4; $i++) { 
 						$sum[$i] = array(
 							"carbohydrates" => 0,
@@ -55,7 +56,7 @@ require("../res/template/header.php");
 					foreach (Nutrition($login["AE"]) as $key => $value) {
 						$need[$key] = $value["recommend"];
 					}
-					$mealnutrition = getMealNutrition($need, $sum, $_POST["meal"]);
+					$mealnutrition = getMealNutrition($need, $sum, $meal);
 					echo "你現在需要：碳水化合物".(int)$mealnutrition["carbohydrates"]."克 脂肪".(int)$mealnutrition["fats"]."克 蛋白質".(int)$mealnutrition["protein"]."克<br>";
 					function diffpercent($nutrition, $need){
 						$temp=abs(($nutrition-$need)/$need);
@@ -73,7 +74,7 @@ require("../res/template/header.php");
 					    }
 					    return ($a["score"] < $b["score"]) ? 1 : -1;
 					}
-					switch ($_POST["meal"]) {
+					switch ($meal) {
 						case '1':
 							$query = new query;
 							$query->table = "food";
@@ -155,10 +156,10 @@ require("../res/template/header.php");
 										碳水化合物:<?php echo $temp["carbohydrates"]; ?>公克<br>
 										脂肪:<?php echo $temp["fats"]; ?>公克<br>
 										蛋白質:<?php echo $temp["protein"]; ?>公克<br>
-										<?php echo $temp["score"]; ?>分
+										<!--<?php echo $temp["score"]; ?>分-->
 									</div>
 									<div class="col-xs-12 col-sm-2">
-										<a href="../diary/add.php?date=<?php echo $date; ?>&meal=<?php echo $meal; ?>&fid=<?php echo $food["fid"]; ?>" class="btn btn-success btn-circle" role="button" onclick="alert('新增套餐功能尚未完成'); return false;">
+										<a href="../diary/add.php?meal=<?php echo $meal; ?>&fid=<?php echo $temp["main"]; ?>,<?php echo $temp["drink"]; ?>" class="btn btn-success btn-circle" role="button">
 											<span class="glyphicon glyphicon-plus"></span>
 										</a>
 									</div>
