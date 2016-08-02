@@ -99,7 +99,7 @@ require("../res/template/header.php");
 					if (count($foodlist) > 0) {
 						foreach($foodlist as $food){
 						?>
-							<li class="list-group-item" style="height: 120px">
+							<li class="list-group-item">
 								<div class="row">
 									<div class="col-xs-6 col-sm-6">
 										<a href="../info/?fid=<?php echo $food["fid"]; ?>&date=<?php echo $date; ?>&meal=<?php echo $meal; ?>">
