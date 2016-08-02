@@ -61,10 +61,22 @@ require("../res/template/header.php");
 				<input class="form-control" name="date" type="date" value="<?php echo $date; ?>" required>
 			</div>
 			<br>
+			<?php
+			if ($meal == null) {
+			?>
 			<img src="../res/image/diary/meal1.png" width="50px" onclick="meal.value=1; form.submit();">　
 			<img src="../res/image/diary/meal2.png" width="50px" onclick="meal.value=2; form.submit();">　
 			<img src="../res/image/diary/meal3.png" width="50px" onclick="meal.value=3; form.submit();">　
 			<img src="../res/image/diary/meal4.png" width="50px" onclick="meal.value=4; form.submit();">
+			<?php
+			} else {
+			?>
+			<button type="submit" class="btn btn-success">
+				<span class="glyphicon glyphicon-plus"></span>
+			</button>
+			<?php
+			}
+			?>
 		</form>
 	</div>
 </div>
