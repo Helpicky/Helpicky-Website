@@ -12,6 +12,41 @@ showmeta();
 <link href="css/stylish-portfolio.css" rel="stylesheet">
 <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+  function statusChangeCallback(response) {
+	console.log(response);
+	if (response.status === 'connected') {
+	  return true;
+	} else if (response.status === 'not_authorized') {
+	  return false;
+	} else {
+	  return false;
+	}
+  }
+  function checkLoginState() {
+	FB.getLoginStatus(function(response) {
+	  if(statusChangeCallback(response))document.location = '../login/?fblogin';
+	});
+  }
+  window.fbAsyncInit = function() {
+  FB.init({
+	appId      : '<?php echo $cfg['facebook']['app_id']; ?>',
+	cookie     : true,
+	xfbml      : true,
+	version    : 'v2.7'
+  });
+  FB.getLoginStatus(function(response) {
+	statusChangeCallback(response);
+  });
+  };
+  (function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.7&appId=1740035992902253";
+	fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
 </head>
 <body topmargin="0" leftmargin="0" bottommargin="0">
 <?php
@@ -44,26 +79,37 @@ require("../res/template/header.php");
 
 <!-- Header -->
 <header id="top" class="header">
-	<div class="row">
-		<div class="col-xs-12 col-sm-8 col-sm-offset-2">
-			<div class="row">
-				<div class="col-xs-12 col-sm-4 col-sm-offset-1"><h1>新挑食主義</h1></div>
-				<div class="col-xs-12 col-sm-7 text-right"><h3>讓小精靈豐富你的飲食生活</h3></div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12">
-					<img src="../res/image/home/nav1.png">
-					<img src="../res/image/home/nav2.png">
-					<img src="../res/image/home/nav3.png">
-					<img src="../res/image/home/nav4.png">
-					<img src="../res/image/home/nav5.png">
-				</div>
-			</div>
-			<div class="row">
-				<a href="#about" class="btn btn-dark btn-lg">Find Out More</a>
-			</div>
+	<div class="row text-center text-vertical-center hidden-xs">
+		<h1>健康的挑食</h1>
+		<h3>幫你選擇健康的飲食生活</h3>
+		<br>
+		<?php
+		if ($login === false) {
+		?>
+		<div class="row text-center">
+			<div class="col-xs-12"><div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false" onlogin="checkLoginState();"></div></div>
 		</div>
+		<?php
+		}
+		?>
 	</div>
+	<div class="row text-center visible-xs-block">
+		<h1>健康的挑食</h1>
+		<h3>幫你選擇健康的飲食生活</h3>
+		<br>
+		<?php
+		if ($login === false) {
+		?>
+		<div class="row text-center">
+			<div class="col-xs-12"><div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false" onlogin="checkLoginState();"></div></div>
+		</div>
+		<?php
+		}
+		?>
+	</div>
+	<!-- <div class="row">
+		<a href="#about" class="btn btn-dark btn-lg">Find Out More</a>
+	</div> -->
 </header>
 
 
@@ -88,8 +134,8 @@ require("../res/template/header.php");
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 text-center">
-				<h2>Stylish Portfolio is the perfect theme for your next project!</h2>
-				<p class="lead">This theme features some wonderful photography courtesy of <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a>.</p>
+				<h2>Helpicky help you pick it!</h2>
+				<p class="lead">想要使用根據您飲食日記做出的強大飲食推薦嗎？登入後請先依<a target="_blank" href="http://join.deathtothestockphoto.com/">&nbsp;Helpicky網頁介紹Youtube--登入、設定與搜尋</a>.進行操作</p>
 			</div>
 		</div>
 		<!-- /.row -->
@@ -103,7 +149,7 @@ require("../res/template/header.php");
 	<div class="container">
 		<div class="row text-center">
 			<div class="col-lg-10 col-lg-offset-1">
-				<h2>Our Services</h2>
+				<h2>我們的其他有趣功能</h2>
 				<hr class="small">
 				<div class="row">
 					<div class="col-md-3 col-sm-6">
@@ -113,10 +159,10 @@ require("../res/template/header.php");
 							<i class="fa fa-cloud fa-stack-1x text-primary"></i>
 						</span>
 							<h4>
-								<strong>Service Name</strong>
+								<strong>日記</strong>
 							</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-							<a href="#" class="btn btn-light">Learn More</a>
+							<p>紀錄您飲食狀況的隨身工具</p>
+							<a href="#" class="btn btn-light">看影片介紹</a>
 						</div>
 					</div>
 					<div class="col-md-3 col-sm-6">
@@ -126,10 +172,10 @@ require("../res/template/header.php");
 							<i class="fa fa-compass fa-stack-1x text-primary"></i>
 						</span>
 							<h4>
-								<strong>Service Name</strong>
+								<strong>成就</strong>
 							</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-							<a href="#" class="btn btn-light">Learn More</a>
+							<p>想知道BMI最近降了多少，各種營養量的攝取是否達到標準，成就精美而詳細的曲線為你度量</p>
+							<a href="#" class="btn btn-light">看影片介紹</a>
 						</div>
 					</div>
 					<div class="col-md-3 col-sm-6">
@@ -139,10 +185,10 @@ require("../res/template/header.php");
 							<i class="fa fa-flask fa-stack-1x text-primary"></i>
 						</span>
 							<h4>
-								<strong>Service Name</strong>
+								<strong>飲食推薦</strong>
 							</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-							<a href="#" class="btn btn-light">Learn More</a>
+							<p>我們的最核心功能<br>根據您的飲食日記，推薦出最有益您健康的多種飲食組合</p>
+							<a href="#" class="btn btn-light">看影片介紹</a>
 						</div>
 					</div>
 					<div class="col-md-3 col-sm-6">
@@ -152,10 +198,10 @@ require("../res/template/header.php");
 							<i class="fa fa-shield fa-stack-1x text-primary"></i>
 						</span>
 							<h4>
-								<strong>Service Name</strong>
+								<strong>熱門商品</strong>
 							</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-							<a href="#" class="btn btn-light">Learn More</a>
+							<p>不只要健康，還想知道那些食物已經炙手可熱，熱門商品全部滿足您</p>
+							<a href="#" class="btn btn-light">看影片介紹</a>
 						</div>
 					</div>
 				</div>
@@ -167,48 +213,45 @@ require("../res/template/header.php");
 	</div>
 	<!-- /.container -->
 </section>
-
 <!-- Callout -->
 <aside class="callout">
 	<div class="text-vertical-center">
-		<h1>Vertically Centered Text</h1>
+		<h1>趕快把Helpicky加入書籤，放在桌面吧</h1>
 	</div>
 </aside>
-
 <!-- Portfolio -->
 <section id="portfolio" class="portfolio">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-10 col-lg-offset-1 text-center">
-				<h2>Our Work</h2>
 				<hr class="small">
 				<div class="row">
 					<div class="col-md-6">
 						<div class="portfolio-item">
-							<a href="#">
-								<img class="img-portfolio img-responsive" src="img/portfolio-1.jpg">
-							</a>
+							<div class="embed-responsive embed-responsive-16by9">
+								<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/woZOdupkbvE"></iframe>
+							</div>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="portfolio-item">
-							<a href="#">
-								<img class="img-portfolio img-responsive" src="img/portfolio-2.jpg">
-							</a>
+							<div class="embed-responsive embed-responsive-16by9">
+								<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/OpDdgR1K-uA"></iframe>
+							</div>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="portfolio-item">
-							<a href="#">
-								<img class="img-portfolio img-responsive" src="img/portfolio-3.jpg">
-							</a>
+							<div class="embed-responsive embed-responsive-16by9">
+								<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/-VaUNLdj5pM"></iframe>
+							</div>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="portfolio-item">
-							<a href="#">
-								<img class="img-portfolio img-responsive" src="img/portfolio-4.jpg">
-							</a>
+							<div class="embed-responsive embed-responsive-16by9">
+								<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/_1g4gpOlnwE"></iframe>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -221,42 +264,28 @@ require("../res/template/header.php");
 	</div>
 	<!-- /.container -->
 </section>
-
 <!-- Call to Action -->
 <aside class="call-to-action bg-primary">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 text-center">
-				<h3>The buttons below are impossible to resist.</h3>
-				<a href="#" class="btn btn-lg btn-light">Click Me!</a>
-				<a href="#" class="btn btn-lg btn-dark">Look at Me!</a>
+				<h3>想要追蹤Helpicky為您跨出的步伐嗎？馬上加入Helpicky粉絲團。</h3>
+				<a href="#" class="btn btn-lg btn-light">粉絲專頁</a>
+				<a href="#" class="btn btn-lg btn-dark">小精靈的最新貼文</a>
 			</div>
 		</div>
 	</div>
 </aside>
-
-<!-- Map -->
-<section id="contact" class="map">
-	<iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A&amp;output=embed"></iframe>
-	<br />
-	<small>
-		<a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a>
-	</small>
-	</iframe>
-</section>
-
 <!-- Footer -->
 <footer>
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-10 col-lg-offset-1 text-center">
-				<h4><strong>Start Bootstrap</strong>
+				<h4><strong>聯絡Helpicky</strong>
 				</h4>
-				<p>3481 Melrose Place
-					<br>Beverly Hills, CA 90210</p>
+				
 				<ul class="list-unstyled">
-					<li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
-					<li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:name@example.com">name@example.com</a>
+					<li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:helpicky@gmai.com">helpicky@gmai.com</a>
 					</li>
 				</ul>
 				<br>
@@ -272,7 +301,7 @@ require("../res/template/header.php");
 					</li>
 				</ul>
 				<hr class="small">
-				<p class="text-muted">Copyright &copy; Your Website 2014</p>
+				<p class="text-muted">Copyright &copy; Helpciky,2016</p>
 			</div>
 		</div>
 	</div>
