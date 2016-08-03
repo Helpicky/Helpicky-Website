@@ -157,7 +157,7 @@ require("../res/template/footer.php");
 		var options = {
 			// title : 'Monthly Coffee Production by Country',
 			orientation: 'vertical',
-			vAxis: {title: '營養'},
+			vAxis: {title: '營養', titleTextStyle: {italic: false}},
 			hAxis: {title: '比例（%）'},
 			seriesType: 'line',
 			series: {0: {type: 'bars'}},

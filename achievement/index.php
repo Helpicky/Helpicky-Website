@@ -78,7 +78,8 @@ function drawLineColors() {
 			title: '日期'
 		},
 		vAxis: {
-			title: '<?php echo $nutrition["name"]; ?>（<?php echo $nutrition["unit"]; ?>）'
+			title: '<?php echo $nutrition["name"]; ?>（<?php echo $nutrition["unit"]; ?>）',
+			titleTextStyle: {italic: false}
 		},
 		colors: ['#0000FF'
 		<?php
