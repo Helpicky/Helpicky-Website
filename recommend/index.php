@@ -201,7 +201,7 @@ require("../res/template/header.php");
 								<!--<?php echo $temp["score"]; ?>分-->
 							</div>
 							<div class="col-xs-12 col-sm-2">
-								<a href="../diary/add.php?meal=<?php echo $meal; ?>&fid=<?php echo $temp["main"]; ?>,<?php echo $temp["drink"]; ?>" class="btn btn-success btn-circle" role="button">
+								<a href="../diary/add.php?meal=<?php echo $meal; ?>&fid=<?php echo $temp["main"]["fid"]; ?>,<?php echo $temp["drink"]["fid"]; ?>" class="btn btn-success btn-circle" role="button">
 									<span class="glyphicon glyphicon-plus"></span>
 								</a>
 							</div>
