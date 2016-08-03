@@ -81,7 +81,7 @@ require("../res/template/header.php");
 <header id="top" class="header">
 	<div class="row text-center text-vertical-center hidden-xs">
 		<h1>健康的挑食</h1>
-		<h3>幫你選擇健康的飲食生活</h3>
+		<h3>幫您選擇健康的飲食生活</h3>
 		<br>
 		<?php
 		if ($login === false) {
@@ -95,7 +95,7 @@ require("../res/template/header.php");
 	</div>
 	<div class="row text-center visible-xs-block">
 		<h1>健康的挑食</h1>
-		<h3>幫你選擇健康的飲食生活</h3>
+		<h3>幫您選擇健康的飲食生活</h3>
 		<br>
 		<?php
 		if ($login === false) {
@@ -162,7 +162,7 @@ require("../res/template/header.php");
 							<h4>
 								<strong>成就</strong>
 							</h4>
-							<p>想知道BMI最近降了多少，各種營養量的攝取是否達到標準，成就精美而詳細的曲線為你度量</p>
+							<p>想知道BMI最近降了多少，各種營養量的攝取是否達到標準，成就精美而詳細的曲線為您度量</p>
 							<a href="#achieve" class="btn btn-light">看影片介紹</a>
 						</div>
 					</div>
