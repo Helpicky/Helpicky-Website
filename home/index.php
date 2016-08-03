@@ -154,54 +154,58 @@ require("../res/template/header.php");
 				<div class="row">
 					<div class="col-md-3 col-sm-6">
 						<div class="service-item">
-							<span class="fa-stack fa-4x">
+							<!-- <span class="fa-stack fa-4x">
 							<i class="fa fa-circle fa-stack-2x"></i>
 							<i class="fa fa-cloud fa-stack-1x text-primary"></i>
-						</span>
+						</span> -->
+							<img src="../res/image/home/nav1.png">
 							<h4>
 								<strong>日記</strong>
 							</h4>
 							<p>紀錄您飲食狀況的隨身工具</p>
-							<a href="#" class="btn btn-light">看影片介紹</a>
+							<a href="#diary" class="btn btn-light">看影片介紹</a>
 						</div>
 					</div>
 					<div class="col-md-3 col-sm-6">
 						<div class="service-item">
-							<span class="fa-stack fa-4x">
+							<!-- <span class="fa-stack fa-4x">
 							<i class="fa fa-circle fa-stack-2x"></i>
 							<i class="fa fa-compass fa-stack-1x text-primary"></i>
-						</span>
+						</span> -->
+							<img src="../res/image/home/nav2.png">
 							<h4>
 								<strong>成就</strong>
 							</h4>
 							<p>想知道BMI最近降了多少，各種營養量的攝取是否達到標準，成就精美而詳細的曲線為你度量</p>
-							<a href="#" class="btn btn-light">看影片介紹</a>
+							<a href="#achieve" class="btn btn-light">看影片介紹</a>
 						</div>
 					</div>
 					<div class="col-md-3 col-sm-6">
 						<div class="service-item">
-							<span class="fa-stack fa-4x">
+							<!-- <span class="fa-stack fa-4x">
 							<i class="fa fa-circle fa-stack-2x"></i>
 							<i class="fa fa-flask fa-stack-1x text-primary"></i>
-						</span>
+						</span> -->
+							<img src="../res/image/home/nav4.png">
 							<h4>
 								<strong>飲食推薦</strong>
 							</h4>
 							<p>我們的最核心功能<br>根據您的飲食日記，推薦出最有益您健康的多種飲食組合</p>
-							<a href="#" class="btn btn-light">看影片介紹</a>
+							<a href="#recommend" class="btn btn-light">看影片介紹</a>
 						</div>
 					</div>
 					<div class="col-md-3 col-sm-6">
 						<div class="service-item">
-							<span class="fa-stack fa-4x">
+							<!-- <span class="fa-stack fa-4x">
 							<i class="fa fa-circle fa-stack-2x"></i>
 							<i class="fa fa-shield fa-stack-1x text-primary"></i>
-						</span>
+						</span> -->
+							<img src="../res/image/home/nav5.png">
 							<h4>
 								<strong>熱門商品</strong>
 							</h4>
 							<p>不只要健康，還想知道那些食物已經炙手可熱，熱門商品全部滿足您</p>
-							<a href="#" class="btn btn-light">看影片介紹</a>
+							<a href="#hot" class="btn btn-light">看影片介紹</a>
 						</div>
 					</div>
 				</div>
@@ -229,34 +233,34 @@ require("../res/template/header.php");
 					<div class="col-md-6">
 						<div class="portfolio-item">
 							<div class="embed-responsive embed-responsive-16by9">
-								<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/woZOdupkbvE" allowfullscreen></iframe>
+								<iframe id="diary" class="embed-responsive-item" src="https://www.youtube.com/embed/woZOdupkbvE" allowfullscreen></iframe>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="portfolio-item">
 							<div class="embed-responsive embed-responsive-16by9">
-								<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/OpDdgR1K-uA" allowfullscreen></iframe>
+								<iframe id="achieve" class="embed-responsive-item" src="https://www.youtube.com/embed/_1g4gpOlnwE" allowfullscreen></iframe>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="portfolio-item">
 							<div class="embed-responsive embed-responsive-16by9">
-								<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/-VaUNLdj5pM" allowfullscreen></iframe>
+								<iframe id="recommend" class="embed-responsive-item" src="https://www.youtube.com/embed/OpDdgR1K-uA" allowfullscreen></iframe>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="portfolio-item">
 							<div class="embed-responsive embed-responsive-16by9">
-								<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/_1g4gpOlnwE" allowfullscreen></iframe>
+								<iframe id="hot" class="embed-responsive-item" src="https://www.youtube.com/embed/-VaUNLdj5pM" allowfullscreen></iframe>
 							</div>
 						</div>
 					</div>
 				</div>
 				<!-- /.row (nested) -->
-				<a href="#" class="btn btn-dark">View More Items</a>
+				<!-- <a href="#" class="btn btn-dark">View More Items</a> -->
 			</div>
 			<!-- /.col-lg-10 -->
 		</div>
@@ -285,23 +289,20 @@ require("../res/template/header.php");
 				</h4>
 				
 				<ul class="list-unstyled">
-					<li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:helpicky@gmai.com">helpicky@gmai.com</a>
+					<li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:helpicky@gmail.com">helpicky@gmail.com</a>
 					</li>
 				</ul>
 				<br>
 				<ul class="list-inline">
 					<li>
-						<a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
+						<a href="https://www.facebook.com/Helpicky" target="_blank"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
 					</li>
 					<li>
-						<a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
-					</li>
-					<li>
-						<a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
+						<a href="https://www.youtube.com/channel/UC9MMSbyMC5NAgRkFjM1C6ow" target="_blank"><i class="fa fa-youtube fa-fw fa-3x"></i></a>
 					</li>
 				</ul>
 				<hr class="small">
-				<p class="text-muted">Copyright &copy; Helpicky,2016</p>
+				<p class="text-muted">Copyright &copy; Helpciky 2016</p>
 			</div>
 		</div>
 	</div>
