@@ -9,6 +9,7 @@ for ($i=1-$cfg['achievement']['show_days']; $i <= 0; $i++) {
 	$nutritionsum[date("Y-m-d", time()+86400*$i)] = array();
 	foreach ($nutritionlist as $nutrition) {
 		$nutritionsum[date("Y-m-d", time()+86400*$i)][$nutrition["id"]] = 0;
+		$nutritionsum[date("Y-m-d", time()+86400*$i)]["record"] = false;
 	}
 }
 $query = new query;
@@ -22,6 +23,7 @@ foreach ($diarylist as $diary) {
 	$food = getfood($diary["fid"]);
 	foreach ($nutritionlist as $nutrition) {
 		$nutritionsum[$diary["date"]][$nutrition["id"]] += $food[$nutrition["id"]];
+		$nutritionsum[$diary["date"]]["record"] = true;
 	}
 }
 $usergoal = Nutrition($login["AE"]);
@@ -57,8 +59,10 @@ function drawLineColors() {
 	data.addRows([
 		<?php
 		foreach ($nutritionsum as $date => $nutritionday) {
-			echo "[".
-				"'".date("d", strtotime($date))."',".$nutritionday[$nutrition["id"]];
+			echo "['".date("d", strtotime($date))."',";
+			if ($nutritionday["record"]) {
+				echo $nutritionday[$nutrition["id"]];
+			}
 			if ($usergoal[$nutrition["id"]]["max"] != 0) {
 				echo ",".$usergoal[$nutrition["id"]]["max"];
 			}
