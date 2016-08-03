@@ -58,6 +58,7 @@ function getrating($fid){
 function getnutritionlist(){
 	$query = new query;
 	$query->table = "nutrition";
+	$query->order = array("no");
 	$row = SELECT($query);
 	$nutritionlist = array();
 	foreach ($row as $key => $value) {

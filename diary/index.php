@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
 require("../function/common.php");
+require("../function/formula.php");
 if($login === false)header("Location: ../login/");
 $date = $_GET["date"] ?? date("Y-m-d");
 $show = $_GET["show"] ?? "1,2,3,4";
@@ -13,6 +14,7 @@ showmeta();
 ?>
 <title>日記-<?php echo $cfg['website']['name']; ?></title>
 <link href="../res/css/diary.css" rel="stylesheet">
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
 	$(function () {
 		$('[data-toggle="tooltip"]').tooltip()
@@ -60,7 +62,10 @@ require("../res/template/header.php");
 			}
 		</script>
 		<?php
-		$sum["calories"] = 0;
+		$nutritionlist = getnutritionlist();
+		foreach ($nutritionlist as $nutrition) {
+			$nutritionsum[$nutrition["id"]] = 0;
+		}
 		for ($meal=1; $meal <= 4; $meal++) { 
 		?>
 		<div class="row">
@@ -91,7 +96,9 @@ require("../res/template/header.php");
 				if (count($row) != 0) {
 					foreach ($row as $temp) {
 						$food = getfood($temp["fid"]);
-						$sum["calories"] += $food["calories"];
+						foreach ($nutritionlist as $nutrition) {
+							$nutritionsum[$nutrition["id"]] += $food[$nutrition["id"]];
+						}
 						?>
 						<a href="../info/?fid=<?php echo $food["fid"]; ?>" style="font-size:20px;"><?php echo $food["name"]; ?></a>
 						<a href="del.php?hash=<?php echo $temp["hash"];?>&date=<?php echo $date; ?>&meal=<?php echo $temp["meal"]; ?>" style="font-size:20px;"><span class="glyphicon glyphicon-remove"></span></a><br>
@@ -109,7 +116,7 @@ require("../res/template/header.php");
 		?>
 		<div class="row">
 			<div class="col-xs-12">
-				今日總共攝取<?php echo $sum["calories"]; ?>大卡
+				<div id="chart_div"></div>
 			</div>
 		</div>
 	</div>
@@ -123,7 +130,42 @@ require("../res/template/footer.php");
 	foreach (explode(",", $show) as $temp) {
 		echo "change_stats(".$temp.");\n";
 	}
+	$usergoal = array();
+	foreach (Nutrition($login["AE"]) as $key => $value) {
+		if ($value["recommend"] != 0) {
+			$usergoal[$key] = $value["recommend"];
+		} else {
+			$usergoal[$key] = $value["max"];
+		}
+	}
 	?>
+
+	google.charts.load('current', {'packages':['corechart']});
+	google.charts.setOnLoadCallback(drawVisualization);
+
+	function drawVisualization() {
+		var data = google.visualization.arrayToDataTable([
+			['營養', '食用', '1/3', '2/3', '建議']
+			<?php
+			foreach ($nutritionlist as $nutrition) {
+				echo ",['".$nutrition["name"]."', ".(100*$nutritionsum[$nutrition["id"]]/$usergoal[$nutrition["id"]]).", 33.3, 66.7, 100]";
+			}
+			?>
+		]);
+
+		var options = {
+			// title : 'Monthly Coffee Production by Country',
+			orientation: 'vertical',
+			vAxis: {title: '營養'},
+			hAxis: {title: '比例（%）'},
+			seriesType: 'line',
+			series: {0: {type: 'bars'}},
+			colors: ['#0000FF','#FE99BC','#FE99BC','#FF0000']
+		};
+
+		var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+		chart.draw(data, options);
+	}
 </script>
 </body>
 </html>
