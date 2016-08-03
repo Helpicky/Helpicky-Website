@@ -206,7 +206,7 @@ require("../res/template/header.php");
 <!-- Callout -->
 <aside class="callout">
 	<div class="text-vertical-center">
-		<h1>趕快把Helpicky加入書籤，放在桌面吧</h1>
+		<h3>趕快把Helpicky加入書籤吧</h3>
 	</div>
 </aside>
 <!-- Portfolio -->
