@@ -135,7 +135,7 @@ require("../res/template/header.php");
 		<div class="row">
 			<div class="col-lg-12 text-center">
 				<h2>Helpicky help you pick it!</h2>
-				<p class="lead">想要使用根據您飲食日記做出的強大飲食推薦嗎？登入後請先依<a target="_blank" href="http://join.deathtothestockphoto.com/">&nbsp;Helpicky網頁介紹Youtube--登入、設定與搜尋</a>.進行操作</p>
+				<p class="lead">想要使用根據您飲食日記做出的強大飲食推薦嗎？登入後請先依<a target="_blank" href="https://youtu.be/3MDUJ9kKmGo">&nbsp;Helpicky網頁介紹Youtube--登入、設定與搜尋</a>.進行操作</p>
 			</div>
 		</div>
 		<!-- /.row -->
