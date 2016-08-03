@@ -229,28 +229,28 @@ require("../res/template/header.php");
 					<div class="col-md-6">
 						<div class="portfolio-item">
 							<div class="embed-responsive embed-responsive-16by9">
-								<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/woZOdupkbvE"></iframe>
+								<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/woZOdupkbvE" allowfullscreen></iframe>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="portfolio-item">
 							<div class="embed-responsive embed-responsive-16by9">
-								<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/OpDdgR1K-uA"></iframe>
+								<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/OpDdgR1K-uA" allowfullscreen></iframe>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="portfolio-item">
 							<div class="embed-responsive embed-responsive-16by9">
-								<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/-VaUNLdj5pM"></iframe>
+								<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/-VaUNLdj5pM" allowfullscreen></iframe>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="portfolio-item">
 							<div class="embed-responsive embed-responsive-16by9">
-								<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/_1g4gpOlnwE"></iframe>
+								<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/_1g4gpOlnwE" allowfullscreen></iframe>
 							</div>
 						</div>
 					</div>
