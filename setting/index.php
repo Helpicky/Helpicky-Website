@@ -201,8 +201,15 @@ require("../res/template/header.php");
 			</td>
 		</tr>
 		<tr>
-			<td>增減攝取熱量</td>
-			<td><div class="col-xs-12"><input type="number" min="-999" max="999" name="EE_diff" value="<?php echo $login['EE_diff']; ?>"></div></td>
+			<td>增減攝取熱量（正為增加，負為減少）</td>
+			<td>
+				<div class="col-xs-12 col-md-4">
+					<input type="number" min="-999" max="999" name="EE_diff" value="<?php echo $login['EE_diff']; ?>">
+				</div>
+				<div class="col-xs-12 col-md-8">
+					（減重每日減500～1000大卡）
+				</div>
+			</td>
 		</tr>
 		<tr>
 			<td>實際所需熱量</td>
