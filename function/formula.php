@@ -15,6 +15,7 @@ function EE($BEE, $activity_factor, $stress_factor){
 
 function Nutrition($EE){
 	$data = array(
+		'calories' => array("min" => $EE * 0.9, "recommend" => $EE, "max" => $EE * 1.1),
 		'protein' => array("min" => $EE * 0.10 / 4, "recommend" => $EE * 0.12 / 4, "max" => $EE * 0.15 / 4),
 		'carbohydrates' => array("min" => $EE * 0.50 / 4, "recommend" => $EE * 0.58 / 4, "max" => $EE * 0.65 / 4),
 		'fats' => array("min" => $EE * 0.25 / 9, "recommend" => $EE * 0.30 / 9, "max" => $EE * 0.35 / 9),
