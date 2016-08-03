@@ -71,7 +71,7 @@ require("../res/template/header.php");
 		<div class="row">
 			<div class="col-xs-2 col-md-1" style="z-index: 3;"><img src="../res/image/diary/meal<?php echo $meal; ?>.png" width="50px" onclick="change_stats(<?php echo $meal; ?>)" class="position: inherit; "></div>
 			<div class="col-xs-10 col-md-11" style="z-index: 2;">
-				<div id="meal<?php echo $meal; ?>tool" style="display: none; padding-top: 0px; padding-bottom: 0px; padding-left: 30px; position: inherit; margin-top: 12px; margin-left: -20px;" class="jumbotron">
+				<div id="meal<?php echo $meal; ?>tool" style="display: none; padding-top: 0px; padding-bottom: 0px; padding-left: 30px; position: inherit; margin-top: 12px; margin-left: -20px; margin-bottom: 0px;" class="jumbotron">
 					<button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="bottom" title="掃描條碼以加入日記" style="color: #000; background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0);" onclick="alert('掃描功能尚未完成唷~')">
 						<span class="glyphicon glyphicon-barcode"></span>
 					</button>
@@ -82,7 +82,7 @@ require("../res/template/header.php");
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-12" style="z-index: 1;">
+			<div class="col-md-12" style="margin-top: 20px; z-index: 1;">
 				<div id="meal<?php echo $meal; ?>food" style="display: none; text-align: center; padding-top: 10px; padding-bottom: 10px; position: inherit; margin-top: -35px; margin-left: 25px; margin-right: 10px;" class="jumbotron">
 				<?php
 				$query = new query;
