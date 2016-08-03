@@ -118,8 +118,11 @@ require("../res/template/header.php");
 		<div class="row">
 			<div class="col-lg-12 text-center">
 				<h2>Helpicky help you pick it!</h2>
-				<p class="lead">想要使用根據您飲食日記做出的強大飲食推薦嗎？登入後請先依<a target="_blank" href="https://youtu.be/3MDUJ9kKmGo">登入、設定與搜尋教學影片</a>進行操作</p>
-			</div>
+				<img src="../res/image/home/nav5.png">
+				<h4><strong>登入、設定與搜尋</strong></h4>
+				<a href="https://youtu.be/3MDUJ9kKmGo" class="btn btn-light">看影片介紹</a>
+				<!-- <p class="lead">想要使用根據您飲食日記做出的強大飲食推薦嗎？登入後請先依<a target="_blank" href="https://youtu.be/3MDUJ9kKmGo">登入、設定與搜尋教學影片</a>進行操作</p>
+			</div> -->
 		</div>
 		<!-- /.row -->
 	</div>
