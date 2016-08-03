@@ -2,8 +2,10 @@
 <?php
 require("../function/common.php");
 require("../function/formula.php");
+require("../function/checkallergen.php");
 if($login === false)header("Location: ../login/");
-$meal = $_POST["meal"] ?? null;
+$meal = $_GET["meal"] ?? "";
+$page = $_GET["page"] ?? 1;
 ?>
 <html lang="zh-Hant-TW">
 <head>
@@ -24,7 +26,7 @@ require("../res/template/header.php");
 		<div class="row">
 			<div class="col-xs-12">
 				你要挑選一套...？<br>
-				<form method="post" id="form">
+				<form method="get" id="form">
 					<input type="hidden" name="meal" id="meal">
 					<img src="../res/image/diary/meal1.png" width="50px" onclick="meal.value=1; form.submit();">　
 					<img src="../res/image/diary/meal2.png" width="50px" onclick="meal.value=2; form.submit();">　
@@ -58,7 +60,7 @@ require("../res/template/header.php");
 						$need[$key] = $value["recommend"];
 					}
 					$mealnutrition = getMealNutrition($need, $sum, $meal);
-					echo "你現在需要：碳水化合物".(int)$mealnutrition["carbohydrates"]."克 脂肪".(int)$mealnutrition["fats"]."克 蛋白質".(int)$mealnutrition["protein"]."克<br>";
+					echo "你現在需要：碳水化合物".(int)$mealnutrition["carbohydrates"]."克、脂肪".(int)$mealnutrition["fats"]."克、蛋白質".(int)$mealnutrition["protein"]."克<br>";
 					function diffpercent($nutrition, $need){
 						$temp=abs(($nutrition-$need)/$need);
 						if ($temp<0.05) return 100;
@@ -121,42 +123,81 @@ require("../res/template/header.php");
 						default:
 							break;
 					}
-					// echo "現有 ".count($mainlist)." 項主餐與 ".count($drinklist)." 項飲料進行搭配<br>";
+					echo "<!--找到 ".count($mainlist)." 項主餐與 ".count($drinklist)." 項飲料-->";
+					$passmain = 0;
+					foreach ($mainlist as $key => $main) {
+						if (count(checkallergen($login["allergen"], $main["allergen"])) != 0) {
+							unset($mainlist[$key]);
+							$passmain++;
+						}
+					}
+					$passdrink = 0;
+					foreach ($drinklist as $key => $drink) {
+						if (count(checkallergen($login["allergen"], $drink["allergen"])) != 0) {
+							unset($drinklist[$key]);
+							$passdrink++;
+						}
+					}
+					echo "<!--略過含過敏原 ".$passmain." 項主餐與 ".$passdrink." 項飲料-->";
+					echo "<!--現有 ".count($mainlist)." 項主餐與 ".count($drinklist)." 項飲料進行搭配-->";
 					$grouplist=array();
 					foreach ($mainlist as $main) {
 						foreach ($drinklist as $drink) {
-								$temp=array(
-									"carbohydrates" => $main["carbohydrates"]+$drink["carbohydrates"],
-									"fats" => $main["fats"]+$drink["fats"],
-									"protein" => $main["protein"]+$drink["protein"]
-								);
-								$temp["main"]=$main["fid"];
-								$temp["drink"]=$drink["fid"];
-								$temp["score"]=
-									diffpercent($temp["carbohydrates"], $mealnutrition["carbohydrates"])+
-									diffpercent($temp["fats"], $mealnutrition["fats"])+
-									diffpercent($temp["protein"], $mealnutrition["protein"]);
-								$grouplist[]=$temp;
+							$temp=array(
+								"carbohydrates" => $main["carbohydrates"]+$drink["carbohydrates"],
+								"fats" => $main["fats"]+$drink["fats"],
+								"protein" => $main["protein"]+$drink["protein"]
+							);
+							$temp["main"]=$main;
+							$temp["drink"]=$drink;
+							$temp["score"]=
+								diffpercent($temp["carbohydrates"], $mealnutrition["carbohydrates"])+
+								diffpercent($temp["fats"], $mealnutrition["fats"])+
+								diffpercent($temp["protein"], $mealnutrition["protein"]);
+							$grouplist[]=$temp;
 						}
 					}
 					usort($grouplist, 'cmp');
-					// echo count($grouplist)."項結果<br>";
+					$pagecnt = floor((count($grouplist)-1)/5)+1;
+					echo "<!--".count($grouplist)."項結果-->";
 					?>
+				<ul class="pager" style="margin-top: 0px; margin-bottom: 0px;">
+					<?php
+					if ($page > 1) {
+					?>
+					<li><a href="?meal=<?php echo $meal; ?>&page=<?php echo $page-1; ?>">←  上一頁</a></li>
+					<?php
+					}
+					echo " 共".$pagecnt."頁";
+					if ($page < $pagecnt) {
+					?>
+					<li><a href="?meal=<?php echo $meal; ?>&page=<?php echo $page+1; ?>">下一頁  →</a></li>
+					<?php
+					}
+					?>
+				</ul>
 				<ul class="list-group" id="contact-list">
 				<?php
-				foreach ($grouplist as $count => $temp) {
-					if ($count>=200) break;
+				$count = 0;
+				foreach ($grouplist as $temp) {
+					$count++;
+					if ($count <= ($page-1)*5) {
+						continue;
+					}
+					if ($count > $page*5) {
+						break;
+					}
 				?>
 					<li class="list-group-item">
 						<div class="row">
 							<div class="col-xs-6 col-sm-6">
-								<a href="../info/?fid=<?php echo $temp["main"]; ?>" target="_blank"><?php echo getfood($temp["main"])["name"]; ?></a><br>
-								<a href="../info/?fid=<?php echo $temp["drink"]; ?>" target="_blank"><?php echo getfood($temp["drink"])["name"]; ?></a>
+								<a href="../info/?fid=<?php echo $temp["main"]["fid"]; ?>" target="_blank"><?php echo $temp["main"]["name"]; ?></a><br>
+								<a href="../info/?fid=<?php echo $temp["drink"]["fid"]; ?>" target="_blank"><?php echo $temp["drink"]["name"]; ?></a>
 							</div>
 							<div class="col-xs-6 col-sm-4">
-								碳水化合物:<?php echo $temp["carbohydrates"]; ?>公克<br>
-								脂肪:<?php echo $temp["fats"]; ?>公克<br>
-								蛋白質:<?php echo $temp["protein"]; ?>公克<br>
+								碳水化合物<?php echo $temp["carbohydrates"]; ?>公克<br>
+								脂肪<?php echo $temp["fats"]; ?>公克<br>
+								蛋白質<?php echo $temp["protein"]; ?>公克<br>
 								<!--<?php echo $temp["score"]; ?>分-->
 							</div>
 							<div class="col-xs-12 col-sm-2">
@@ -169,6 +210,21 @@ require("../res/template/header.php");
 				<?php
 				}
 				?>
+				</ul>
+				<ul class="pager" style="margin-top: 0px; margin-bottom: 0px;">
+					<?php
+					if ($page > 1) {
+					?>
+					<li><a href="?meal=<?php echo $meal; ?>&page=<?php echo $page-1; ?>">←  上一頁</a></li>
+					<?php
+					}
+					echo " 共".$pagecnt."頁";
+					if ($page < $pagecnt) {
+					?>
+					<li><a href="?meal=<?php echo $meal; ?>&page=<?php echo $page+1; ?>">下一頁  →</a></li>
+					<?php
+					}
+					?>
 				</ul>
 				<?php
 				}
