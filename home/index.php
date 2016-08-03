@@ -270,8 +270,8 @@ require("../res/template/header.php");
 		<div class="row">
 			<div class="col-lg-12 text-center">
 				<h3>想要追蹤Helpicky為您跨出的步伐嗎？馬上加入Helpicky粉絲團。</h3>
-				<a href="https://www.facebook.com/Helpicky" class="btn btn-lg btn-light">粉絲專頁</a>
-				<a href="https://www.facebook.com/Helpicky" class="btn btn-lg btn-dark">小精靈的最新貼文</a>
+				<a href="https://www.facebook.com/Helpicky" class="btn btn-lg btn-light" target="_blank">粉絲專頁</a>
+				<a href="https://www.facebook.com/Helpicky" class="btn btn-lg btn-dark" target="_blank">小精靈的最新貼文</a>
 			</div>
 		</div>
 	</div>
