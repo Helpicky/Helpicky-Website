@@ -66,7 +66,7 @@ require("../res/template/header.php");
 		<div class="row">
 			<div class="col-xs-2 col-md-1"><img src="../res/image/diary/meal<?php echo $meal; ?>.png" width="50px" onclick="change_stats(<?php echo $meal; ?>)"></div>
 			<div class="col-xs-10 col-md-11">
-				<div id="meal<?php echo $meal; ?>tool" style="display: none; padding-top: 0px; padding-bottom: 0px;" class="jumbotron">
+				<div id="meal<?php echo $meal; ?>tool" style="display: none; padding-top: 0px; padding-bottom: 0px; margin-top: 12px;" class="jumbotron">
 					<button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="bottom" title="掃描條碼以加入日記" style="color: #000; background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0);" onclick="alert('掃描功能尚未完成唷~')">
 						<span class="glyphicon glyphicon-barcode"></span>
 					</button>
