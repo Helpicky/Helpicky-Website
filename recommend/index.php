@@ -158,7 +158,7 @@ require("../res/template/header.php");
 						}
 					}
 					usort($grouplist, 'cmp');
-					$pagecnt = floor((count($grouplist)-1)/5)+1;
+					$pagecnt = floor((count($grouplist)-1)/$cfg['recommend']['show']['number'])+1;
 					echo "<!--".count($grouplist)."項結果-->";
 					?>
 				<ul class="pager" style="margin-top: 0px; margin-bottom: 0px;">
@@ -181,10 +181,10 @@ require("../res/template/header.php");
 				$count = 0;
 				foreach ($grouplist as $temp) {
 					$count++;
-					if ($count <= ($page-1)*5) {
+					if ($count <= ($page-1)*$cfg['recommend']['show']['number']) {
 						continue;
 					}
-					if ($count > $page*5) {
+					if ($count > $page*$cfg['recommend']['show']['number']) {
 						break;
 					}
 				?>
