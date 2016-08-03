@@ -82,6 +82,7 @@ showmeta();
 <?php
 require("../res/template/header.php");
 ?>
+<div class="container-fluid">
 <div class="row">
 	<div class="col-xs-12 col-md-offset-1 col-md-10">
 		<h2>
@@ -193,6 +194,7 @@ require("../res/template/header.php");
 			</div>
 		</div>
 	</div>
+</div>
 </div>
 <?php
 require("../res/template/footer.php");

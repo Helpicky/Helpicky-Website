@@ -82,6 +82,7 @@ showmeta();
 <?php
 require("../res/template/header.php");
 ?>
+<div class="container-fluid">
 <div class="row">
 	<div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10">
 		<h2>設定</h2>
@@ -231,7 +232,8 @@ require("../res/template/header.php");
 		</button>
 		</form>
 	</div>
-</div><
+</div>
+</div>
 <script type="text/javascript">
 $(document).ready(function() {
 	$(window).keydown(function(event){

@@ -108,11 +108,13 @@ showmeta();
 <?php
 	require("../res/template/header.php");
 ?>
+<div class="container-fluid">
 <div class="row">
 	<div class="col-xs-12 col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4">
 		<h2>登入</h2>
 		<div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false" onlogin="checkLoginState();"></div>
 	</div>
+</div>
 </div>
 <?php
 require("../res/template/footer.php");
