@@ -112,23 +112,6 @@ require("../res/template/header.php");
 	</div> -->
 </header>
 
-
-<!-- <div class="container-fluid" style="">
-	<div class="row">
-		<div class="col-xs-12 col-sm-4 col-sm-offset-1"><h1>新挑食主義</h1></div>
-		<div class="col-xs-12 col-sm-7 text-right"><h3>讓小精靈豐富你的飲食生活</h3></div>
-	</div>
-	<div class="row">
-		<div class="col-xs-12">
-			<img src="../res/image/home/nav1.png">
-			<img src="../res/image/home/nav2.png">
-			<img src="../res/image/home/nav3.png">
-			<img src="../res/image/home/nav4.png">
-			<img src="../res/image/home/nav5.png">
-		</div>
-	</div>
-</div>
- -->
 <!-- About -->
 <section id="about" class="about">
 	<div class="container">
@@ -200,7 +183,7 @@ require("../res/template/header.php");
 							<i class="fa fa-circle fa-stack-2x"></i>
 							<i class="fa fa-shield fa-stack-1x text-primary"></i>
 						</span> -->
-							<img src="../res/image/home/nav5.png">
+							<img src="../res/image/home/nav3.png">
 							<h4>
 								<strong>熱門商品</strong>
 							</h4>
