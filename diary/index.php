@@ -115,7 +115,8 @@ require("../res/template/header.php");
 		}
 		?>
 		<div class="row">
-			<div class="col-xs-12">
+			<div class="col-xs-12 text-center">
+				<big>今日已攝取</big>
 				<div id="chart_div"></div>
 			</div>
 		</div>
@@ -145,7 +146,7 @@ require("../res/template/footer.php");
 
 	function drawVisualization() {
 		var data = google.visualization.arrayToDataTable([
-			['營養', '食用', '1/3', '2/3', '建議']
+			['營養', '攝取', '1/3', '2/3', '建議']
 			<?php
 			foreach ($nutritionlist as $nutrition) {
 				echo ",['".$nutrition["name"]."', ".(100*$nutritionsum[$nutrition["id"]]/$usergoal[$nutrition["id"]]).", 33.3, 66.7, 100]";
@@ -160,7 +161,8 @@ require("../res/template/footer.php");
 			hAxis: {title: '比例（%）'},
 			seriesType: 'line',
 			series: {0: {type: 'bars'}},
-			colors: ['#0000FF','#FE99BC','#FE99BC','#FF0000']
+			backgroundColor : { fill:'transparent' },
+			colors: ['#DBB6FF','#FE99BC','#FE99BC','#FF0000']
 		};
 
 		var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
