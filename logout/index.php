@@ -22,9 +22,9 @@ showmeta();
 </head>
 <body Marginwidth="-1" Marginheight="-1" Topmargin="0" Leftmargin="0">
 <?php
-	addmsgbox("success", "已登出", false);
-	require("../res/template/header.php");
-	require("../res/template/footer.php");
+addmsgbox("success", "已登出", false);
+require("../res/template/header.php");
+require("../res/template/footer.php");
 ?>
 <script>setTimeout(function(){location="../home/";}, 5000)</script>
 </body>

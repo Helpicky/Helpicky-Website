@@ -106,8 +106,10 @@ require("../res/template/header.php");
 			echo '<div id="'.$nutrition["id"].'_chart_div"></div>';
 		}
 		?>
+	</div>
+</div>
 <?php
-	include("../res/template/footer.php");
+require("../res/template/footer.php");
 ?>
 </body>
 </html>

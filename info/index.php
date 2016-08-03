@@ -195,7 +195,7 @@ require("../res/template/header.php");
 	</div>
 </div>
 <?php
-	include("../res/template/footer.php");
+require("../res/template/footer.php");
 ?>
 </body>
 </html>

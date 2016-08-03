@@ -93,14 +93,10 @@ require("../res/template/header.php");
 				?>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-12">
-			</div>
-		</div>
 	</div>
-</div>
+</div><
 <?php
-	include("../res/template/footer.php");
+require("../res/template/footer.php");
 ?>
 </body>
 </html>

@@ -87,6 +87,7 @@ require("../res/template/header.php");
 		<h2>設定</h2>
 		<form method="post">
 		<table width="0" border="0" cellspacing="10" cellpadding="0" class="table">
+		<tr>
 			<td>暱稱</td>
 			<td><div class="col-xs-12"><input type="text" name="nickname" value="<?php echo $login['nickname']; ?>"></div></td>
 		</tr>
@@ -230,7 +231,7 @@ require("../res/template/header.php");
 		</button>
 		</form>
 	</div>
-</div>
+</div><
 <script type="text/javascript">
 $(document).ready(function() {
 	$(window).keydown(function(event){
@@ -242,7 +243,7 @@ $(document).ready(function() {
 });
 </script>
 <?php
-	include("../res/template/footer.php");
+require("../res/template/footer.php");
 ?>
 </body>
 </html>

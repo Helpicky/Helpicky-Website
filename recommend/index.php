@@ -141,43 +141,43 @@ require("../res/template/header.php");
 					usort($grouplist, 'cmp');
 					// echo count($grouplist)."項結果<br>";
 					?>
-					<ul class="list-group" id="contact-list">
-					<?php
-					foreach ($grouplist as $count => $temp) {
-						if ($count>=200) break;
-						?>
-							<li class="list-group-item">
-								<div class="row">
-									<div class="col-xs-6 col-sm-6">
-										<a href="../info/?fid=<?php echo $temp["main"]; ?>" target="_blank"><?php echo getfood($temp["main"])["name"]; ?></a><br>
-										<a href="../info/?fid=<?php echo $temp["drink"]; ?>" target="_blank"><?php echo getfood($temp["drink"])["name"]; ?></a>
-									</div>
-									<div class="col-xs-6 col-sm-4">
-										碳水化合物:<?php echo $temp["carbohydrates"]; ?>公克<br>
-										脂肪:<?php echo $temp["fats"]; ?>公克<br>
-										蛋白質:<?php echo $temp["protein"]; ?>公克<br>
-										<!--<?php echo $temp["score"]; ?>分-->
-									</div>
-									<div class="col-xs-12 col-sm-2">
-										<a href="../diary/add.php?meal=<?php echo $meal; ?>&fid=<?php echo $temp["main"]; ?>,<?php echo $temp["drink"]; ?>" class="btn btn-success btn-circle" role="button">
-											<span class="glyphicon glyphicon-plus"></span>
-										</a>
-									</div>
-								</div>
-							</li>
-						<?php
-					}
-					?>
-					</ul>
-					<?php
+				<ul class="list-group" id="contact-list">
+				<?php
+				foreach ($grouplist as $count => $temp) {
+					if ($count>=200) break;
+				?>
+					<li class="list-group-item">
+						<div class="row">
+							<div class="col-xs-6 col-sm-6">
+								<a href="../info/?fid=<?php echo $temp["main"]; ?>" target="_blank"><?php echo getfood($temp["main"])["name"]; ?></a><br>
+								<a href="../info/?fid=<?php echo $temp["drink"]; ?>" target="_blank"><?php echo getfood($temp["drink"])["name"]; ?></a>
+							</div>
+							<div class="col-xs-6 col-sm-4">
+								碳水化合物:<?php echo $temp["carbohydrates"]; ?>公克<br>
+								脂肪:<?php echo $temp["fats"]; ?>公克<br>
+								蛋白質:<?php echo $temp["protein"]; ?>公克<br>
+								<!--<?php echo $temp["score"]; ?>分-->
+							</div>
+							<div class="col-xs-12 col-sm-2">
+								<a href="../diary/add.php?meal=<?php echo $meal; ?>&fid=<?php echo $temp["main"]; ?>,<?php echo $temp["drink"]; ?>" class="btn btn-success btn-circle" role="button">
+									<span class="glyphicon glyphicon-plus"></span>
+								</a>
+							</div>
+						</div>
+					</li>
+				<?php
+				}
+				?>
+				</ul>
+				<?php
 				}
 				?>
 			</div>
 		</div>
 	</div>
-</div>
+</div><
 <?php
-	include("../res/template/footer.php");
+require("../res/template/footer.php");
 ?>
 </body>
 </html>
