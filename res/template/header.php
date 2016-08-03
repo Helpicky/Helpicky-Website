@@ -25,10 +25,10 @@
 				if ($login !== false) {
 				?>
 				<li>
-					<a href="../diary/">日記</a>
+					<a href="../diary/">我的日記</a>
 				</li>
 				<li>
-					<a href="../achievement/">成就</a>
+					<a href="../achievement/">我的成就</a>
 				</li>
 				<li>
 					<a href="../recommend/">飲食推薦</a>
