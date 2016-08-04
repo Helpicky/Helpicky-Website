@@ -284,6 +284,9 @@ require("../res/template/header.php");
 						<a href="https://www.facebook.com/Helpicky" target="_blank"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
 					</li>
 					<li>
+						<a href="https://plus.google.com/114861070416184531354" target="_blank"><i class="fa fa-google fa-fw fa-3x"></i></a>
+					</li>
+					<li>
 						<a href="https://www.youtube.com/channel/UC9MMSbyMC5NAgRkFjM1C6ow" target="_blank"><i class="fa fa-youtube fa-fw fa-3x"></i></a>
 					</li>
 				</ul>
