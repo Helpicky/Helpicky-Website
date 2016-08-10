@@ -6,6 +6,10 @@ require("../function/checkallergen.php");
 if($login === false)header("Location: ../login/");
 $meal = $_GET["meal"] ?? "";
 $page = $_GET["page"] ?? 1;
+if ($login["AE"] == 0) {
+	addmsgbox("danger", '因為 實際所需熱量 設定不正確，所以無法使用此功能，請前往<a href="../setting/">設定</a>修正');
+	$meal = 0;
+}
 ?>
 <html lang="zh-Hant-TW">
 <head>

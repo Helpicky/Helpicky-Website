@@ -1,15 +1,21 @@
 <?php
 function BEE($gender, $weight, $height, $age){
+	if ($weight == 0 || $height == 0 || $age == 0) {
+		return 0;
+	}
 	if ($gender == 1) {
 		return 66 + 13.7 * $weight + 5 * $height - 6.8 * $age;
 	} else if ($gender == 2) {
 		return 655 + 9.6 * $weight + 1.7 * $height - 4.7 * $age;
 	} else {
-		exit("function BEE gerder Error");
+		return 0;
 	}
 }
 
 function EE($BEE, $activity_factor, $stress_factor){
+	if ($BEE == 0 || $activity_factor == 0 || $stress_factor == 0) {
+		return 0;
+	}
 	return $BEE * $activity_factor * $stress_factor;
 }
 

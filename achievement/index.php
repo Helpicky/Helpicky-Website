@@ -3,31 +3,35 @@
 require("../function/common.php");
 require("../function/formula.php");
 if($login === false)header("Location: ../login/");
-$nutritionlist = getnutritionlist();
-$nutritionsum = array();
-for ($i=1-$cfg['achievement']['show_days']; $i <= 0; $i++) { 
-	$nutritionsum[date("Y-m-d", time()+86400*$i)] = array();
-	foreach ($nutritionlist as $nutrition) {
-		$nutritionsum[date("Y-m-d", time()+86400*$i)][$nutrition["id"]] = 0;
-		$nutritionsum[date("Y-m-d", time()+86400*$i)]["record"] = false;
+if ($login["AE"] == 0) {
+	addmsgbox("danger", '因為 實際所需熱量 設定不正確，所以無法使用此功能，請前往<a href="../setting/">設定</a>修正');
+} else {
+	$nutritionlist = getnutritionlist();
+	$nutritionsum = array();
+	for ($i=1-$cfg['achievement']['show_days']; $i <= 0; $i++) { 
+		$nutritionsum[date("Y-m-d", time()+86400*$i)] = array();
+		foreach ($nutritionlist as $nutrition) {
+			$nutritionsum[date("Y-m-d", time()+86400*$i)][$nutrition["id"]] = 0;
+			$nutritionsum[date("Y-m-d", time()+86400*$i)]["record"] = false;
+		}
 	}
-}
-$query = new query;
-$query->table = "diary";
-$query->where = array(
-	array("uid", $login["uid"]),
-	array("date", date("Y-m-d", time()-86400*($cfg['achievement']['show_days']-1)), ">=")
-);
-$diarylist = SELECT($query);
-foreach ($diarylist as $diary) {
-	$food = getfood($diary["fid"]);
-	foreach ($nutritionlist as $nutrition) {
-		$nutritionsum[$diary["date"]][$nutrition["id"]] += $food[$nutrition["id"]];
-		$nutritionsum[$diary["date"]]["record"] = true;
+	$query = new query;
+	$query->table = "diary";
+	$query->where = array(
+		array("uid", $login["uid"]),
+		array("date", date("Y-m-d", time()-86400*($cfg['achievement']['show_days']-1)), ">=")
+	);
+	$diarylist = SELECT($query);
+	foreach ($diarylist as $diary) {
+		$food = getfood($diary["fid"]);
+		foreach ($nutritionlist as $nutrition) {
+			$nutritionsum[$diary["date"]][$nutrition["id"]] += $food[$nutrition["id"]];
+			$nutritionsum[$diary["date"]]["record"] = true;
+		}
 	}
+	$usergoal = Nutrition($login["AE"]);
+	$usergoal["calories"] = array("min" => $login["AE"] * 0.9, "recommend" => $login["AE"], "max" => $login["AE"] * 1.1);
 }
-$usergoal = Nutrition($login["AE"]);
-$usergoal["calories"] = array("min" => $login["AE"] * 0.9, "recommend" => $login["AE"], "max" => $login["AE"] * 1.1);
 ?>
 <html lang="zh-Hant-TW">
 <head>
@@ -37,6 +41,9 @@ require("../res/template/comhead.php");
 showmeta();
 ?>
 <title>成就-<?php echo $cfg['website']['name']; ?></title>
+<?php
+if ($login["AE"] != 0) {
+?>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
 google.charts.load('current', {packages: ['corechart', 'line']});
@@ -98,6 +105,9 @@ function drawLineColors() {
 	?>
 }
 </script>
+<?php
+}
+?>
 </head>
 <body Marginwidth="-1" Marginheight="-1" Topmargin="0" Leftmargin="0">
 <?php
@@ -108,8 +118,10 @@ require("../res/template/header.php");
 	<div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10">
 		<h2>成就</h2>
 		<?php
-		foreach ($nutritionlist as $nutrition) {
-			echo '<div id="'.$nutrition["id"].'_chart_div"></div>';
+		if ($login["AE"] != 0) {
+			foreach ($nutritionlist as $nutrition) {
+				echo '<div id="'.$nutrition["id"].'_chart_div"></div>';
+			}
 		}
 		?>
 	</div>
