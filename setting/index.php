@@ -44,6 +44,14 @@ else if (isset($_POST["submit"])) {
 				array("uid", $login["uid"])
 			);
 			UPDATE($query);
+			if ($_POST["weight"] == 0 || $_POST["height"] == 0 || $_POST["age"] == 0) {
+				$msg = "以下資料填寫錯誤，無法自動設定 基本能量消耗（BEE）";
+				if ($_POST["height"] == 0) $msg .= "<br>身高";
+				if ($_POST["weight"] == 0) $msg .= "<br>體重";
+				if ($_POST["age"] == 0) $msg .= "<br>年齡";
+				addmsgbox("danger", $msg);
+				break;
+			}
 			$login = checklogin();
 			addmsgbox("success", "已自動設定 基本能量消耗（BEE） 為 ".$login["BEE"]);
 			break;
@@ -61,6 +69,14 @@ else if (isset($_POST["submit"])) {
 				array("uid", $login["uid"])
 			);
 			UPDATE($query);
+			if ($_POST["BEE"] == 0 || $_POST["activity_factor"] == 0 || $_POST["stress_factor"] == 0) {
+				$msg = "以下資料填寫錯誤，無法自動設定 實際能量消耗（Energy Expenditure）";
+				if ($_POST["BEE"] == 0) $msg .= "<br>基本能量消耗（BEE）";
+				if ($_POST["activity_factor"] == 0) $msg .= "<br>活動因素（Activity Factor）";
+				if ($_POST["stress_factor"] == 0) $msg .= "<br>壓力因素（Stress Factor）";
+				addmsgbox("danger", $msg);
+				break;
+			}
 			$login = checklogin();
 			addmsgbox("success", "已自動設定 熱量消耗（Energy Expenditure） 為 ".$login["EE"]);
 			break;
@@ -90,12 +106,12 @@ require("../res/template/header.php");
 		<table width="0" border="0" cellspacing="10" cellpadding="0" class="table">
 		<tr>
 			<td>暱稱</td>
-			<td><div class="col-xs-12"><input type="text" name="nickname" value="<?php echo $login['nickname']; ?>"></div></td>
+			<td><div class="col-xs-12"><input type="text" name="nickname" value="<?php echo $login['nickname']; ?>" required></div></td>
 		</tr>
 		<tr>
 			<td>性別</td>
 			<td><div class="col-xs-12">
-				<input type="radio" name="gender" value="1" <?php echo ($login["gender"]==1?"checked":""); ?>>男
+				<input type="radio" name="gender" value="1" <?php echo ($login["gender"]==1?"checked":""); ?> required>男
 				<input type="radio" name="gender" value="2" <?php echo ($login["gender"]==2?"checked":""); ?>>女
 			</div></td>
 		</tr>

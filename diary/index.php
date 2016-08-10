@@ -116,7 +116,15 @@ require("../res/template/header.php");
 		?>
 		<div class="row">
 			<div class="col-xs-12 text-center">
-				<big>今日已攝取</big>
+				<big>
+				<?php
+				if ($login["AE"] == 0) {
+					?>因為 實際所需熱量 設定不正確，所以無法顯示圖表，請前往<a href="../setting/">設定</a>修正<?php
+				} else {
+					?>今日已攝取<?php
+				}
+				?>
+				</big>
 				<div id="chart_div"></div>
 			</div>
 		</div>
@@ -127,10 +135,14 @@ require("../res/template/header.php");
 require("../res/template/footer.php");
 ?>
 <script type="text/javascript">
-	<?php
-	foreach (explode(",", $show) as $temp) {
-		echo "change_stats(".$temp.");\n";
-	}
+<?php
+foreach (explode(",", $show) as $temp) {
+	echo "change_stats(".$temp.");\n";
+}
+?>
+</script>
+<?php
+if ($login["AE"] != 0) {
 	$usergoal = array();
 	foreach (Nutrition($login["AE"]) as $key => $value) {
 		if ($value["recommend"] != 0) {
@@ -139,8 +151,8 @@ require("../res/template/footer.php");
 			$usergoal[$key] = $value["max"];
 		}
 	}
-	?>
-
+?>
+<script type="text/javascript">
 	google.charts.load('current', {'packages':['corechart']});
 	google.charts.setOnLoadCallback(drawVisualization);
 
@@ -169,5 +181,8 @@ require("../res/template/footer.php");
 		chart.draw(data, options);
 	}
 </script>
+<?php
+}
+?>
 </body>
 </html>
