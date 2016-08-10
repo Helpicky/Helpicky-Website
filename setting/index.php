@@ -250,8 +250,8 @@ require("../res/template/header.php");
 		</tr>
 		</table>
 		<button type="submit" class="btn btn-success" name="submit">
-			<span class="glyphicon glyphicon-pencil"></span>
-			修改
+			<span class="glyphicon glyphicon-floppy-disk"></span>
+			儲存
 		</button>
 		</form>
 	</div>
