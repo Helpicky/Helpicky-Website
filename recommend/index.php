@@ -67,12 +67,15 @@ require("../res/template/header.php");
 					echo "你現在需要：碳水化合物".(int)$mealnutrition["carbohydrates"]."克、脂肪".(int)$mealnutrition["fats"]."克、蛋白質".(int)$mealnutrition["protein"]."克<br>";
 					function diffpercent($nutrition, $need){
 						$temp=abs(($nutrition-$need)/$need);
-						if ($temp<0.05) return 100;
-						if ($temp<0.10) return 95;
-						if ($temp<0.15) return 90;
-						if ($temp<0.20) return 85;
-						if ($temp<0.25) return 80;
-						if ($temp<0.30) return 60;
+						// if ($temp<0.05) return 1000;
+						// if ($temp<0.10) return 950;
+						// if ($temp<0.15) return 900;
+						// if ($temp<0.20) return 850;
+						// if ($temp<0.25) return 800;
+						// if ($temp<0.30) return 600;
+						if ($temp<0.20) return 100-$temp*100;
+						if ($temp<0.25) return 80-($temp-0.20)*400;
+						if ($temp<0.30) return 60-($temp-0.25)*1200;
 						return 0;
 					}
 					function cmp($a, $b) {
@@ -157,7 +160,8 @@ require("../res/template/header.php");
 							$temp["score"]=
 								diffpercent($temp["carbohydrates"], $mealnutrition["carbohydrates"])+
 								diffpercent($temp["fats"], $mealnutrition["fats"])+
-								diffpercent($temp["protein"], $mealnutrition["protein"]);
+								diffpercent($temp["protein"], $mealnutrition["protein"])/*+
+								rand(0, 2000)*/;
 							$grouplist[]=$temp;
 						}
 					}
@@ -202,7 +206,7 @@ require("../res/template/header.php");
 								碳水化合物<?php echo $temp["carbohydrates"]; ?>公克<br>
 								脂肪<?php echo $temp["fats"]; ?>公克<br>
 								蛋白質<?php echo $temp["protein"]; ?>公克<br>
-								<!--<?php echo $temp["score"]; ?>分-->
+								<?php echo round($temp["score"], 2); ?>分
 							</div>
 							<div class="col-xs-12 col-sm-2">
 								<a href="../diary/add.php?meal=<?php echo $meal; ?>&fid=<?php echo $temp["main"]["fid"]; ?>,<?php echo $temp["drink"]["fid"]; ?>" class="btn btn-success btn-circle" role="button">
