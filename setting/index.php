@@ -2,7 +2,7 @@
 <?php
 require("../function/common.php");
 if($login === false)header("Location: ../login/");
-else if (isset($_POST["submit"])) {
+if (isset($_POST["submit"])) {
 	$query = new query;
 	$query->table = "user";
 	$query->value = array(
@@ -25,6 +25,14 @@ else if (isset($_POST["submit"])) {
 	);
 	UPDATE($query);
 	$login = checklogin();
+	if ($inlearn==1) {
+		if ($login["AE"] != 0) {
+			addmsgbox("info", "恭喜你完成任務一");
+			addmsgbox("info", "任務二，搜尋一項產品，請在上方搜尋欄位輸入你想要搜尋的產品");
+		} else {
+			addmsgbox("warning", "此任務尚未完成，實際所需熱量不可為0");
+		}
+	}
 	addmsgbox("success", "已更新");
 } else if (isset($_POST["auto"])) {
 	require("../function/formula.php");
@@ -78,12 +86,22 @@ else if (isset($_POST["submit"])) {
 				break;
 			}
 			$login = checklogin();
+			if ($inlearn==1) {
+				if ($login["AE"] != 0) {
+					addmsgbox("info", "恭喜你完成任務一");
+					addmsgbox("info", "任務二，搜尋一項產品，請在上方搜尋欄位輸入你想要搜尋的產品");
+				} else {
+					addmsgbox("warning", "此任務尚未完成，實際所需熱量不可為0");
+				}
+			}
 			addmsgbox("success", "已自動設定 熱量消耗（Energy Expenditure） 為 ".$login["EE"]);
 			break;
 		default:
 			addmsgbox("danger", "自動設定發生錯誤");
 			break;
 	}
+} else if ($inlearn==1) {
+	addmsgbox("info", "任務一，完成設定，填寫完需按最下方儲存鈕<br>部分數值可以使用自動計算按鈕根據公式計算");
 }
 ?>
 <html lang="zh-Hant-TW">

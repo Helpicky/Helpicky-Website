@@ -16,6 +16,7 @@ function checklogin(){
 			array("uid", $row["uid"]),
 		);
 		$temp = fetchone(SELECT($query));
+		$temp["learn"] = explode(",", $temp["learn"]);
 		$temp["AE"] = $temp["EE"] + $temp["EE_diff"];
 		return $temp;
 	}

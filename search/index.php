@@ -6,6 +6,16 @@ if($cfg['system']['require_login'] && $login === false)header("Location: ../logi
 $search = $_GET["name"] ?? "";
 $date = $_GET["date"] ?? "";
 $meal = $_GET["meal"] ?? "";
+if ($search) {
+	if ($inlearn==2) {
+		if ($login["AE"] != 0) {
+			addmsgbox("info", "恭喜你完成任務一");
+			addmsgbox("info", "任務二，搜尋一項產品，請在上方搜尋欄位輸入你想要搜尋的產品");
+		} else {
+			addmsgbox("warning", "此任務尚未完成，實際所需熱量不可為0");
+		}
+	}
+}
 ?>
 <html lang="zh-Hant-TW">
 <head>
