@@ -86,20 +86,24 @@ require("../res/template/header.php");
 							$query = new query;
 							$query->table = "food";
 							$query->where = array(
+								array(null, null, null, "("),
 								array("catid", "3", null, "OR"),
 								array("catid", "5", null, "OR"),
 								array("catid", "6", null, "OR"),
 								array("catid", "8", null, "OR"),
 								array("catid", "12", null, "OR"),
-								array("catid", "11")
+								array("catid", "11", null, ") AND "),
+								array("hide", "0")
 							);
 							$mainlist = SELECT($query);
 							$query = new query;
 							$query->table = "food";
 							$query->where = array(
+								array(null, null, null, "("),
 								// array("catid", "1", null, "OR"), 
 								array("catid", "16", null, "OR"),
-								array("catid", "17")
+								array("catid", "17", null, ") AND "),
+								array("hide", "0")
 							);
 							$drinklist = SELECT($query);
 							break;
@@ -108,19 +112,23 @@ require("../res/template/header.php");
 							$query = new query;
 							$query->table = "food";
 							$query->where = array(
+								array(null, null, null, "("),
 								array("catid", "5", null, "OR"),
 								array("catid", "6", null, "OR"),
 								array("catid", "7", null, "OR"),
 								array("catid", "8", null, "OR"),
-								array("catid", "12", null, "OR")
+								array("catid", "12", null, ") AND "),
+								array("hide", "0")
 							);
 							$mainlist = SELECT($query);
 							$query = new query;
 							$query->table = "food";
 							$query->where = array(
+								array(null, null, null, "("),
 								// array("catid", "1", null, "OR"), 
 								array("catid", "16", null, "OR"),
-								array("catid", "17")
+								array("catid", "17", null, ") AND "),
+								array("hide", "0")
 							);
 							$drinklist = SELECT($query);
 							break;
